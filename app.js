@@ -23,7 +23,15 @@ function money(value){
   return n.toLocaleString('en-US',{minimumFractionDigits:3,maximumFractionDigits:3});
 }
 function rowsTable(headers,rows=[]){
-  return `<div class="table-wrap"><table class="detail-table"><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(c=>`<td>${c??'—'}</td>`).join('')}</tr>`).join('')||`<tr><td colspan="${headers.length}">لا توجد بيانات تفصيلية في النموذج التجريبي.</td></tr>`}</tbody></table></div>`;
+  return `<div class="table-wrap"><table class="detail-table responsive-table"><thead><tr>${headers.map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map((c,i)=>`<td data-label="${headers[i]||''}">${c??'—'}</td>`).join('')}</tr>`).join('')||`<tr class="empty-row"><td colspan="${headers.length}">لا توجد بيانات تفصيلية في النموذج التجريبي.</td></tr>`}</tbody></table></div>`;
+}
+function enhanceResponsiveTables(root=document){
+  $$('table',root).forEach(table=>{
+    const headers=$$('thead th',table).map(th=>th.textContent.trim());
+    $$('tbody tr',table).forEach(row=>{
+      $$('td',row).forEach((td,i)=>{if(!td.hasAttribute('colspan')&&!td.dataset.label)td.dataset.label=headers[i]||''});
+    });
+  });
 }
 
 const caseData={
@@ -171,9 +179,9 @@ const caseData={
     docs:[['شهادة الوفاة','موثق','12/06/2026'],['الفريضة الشرعية','موثق','14/06/2026'],['سند الملكية','قيد التحقق','16/06/2026']],
     audit:[['فتح الملف','سارة يوسف','12/06/2026 09:10'],['إضافة قاصر','سارة يوسف','12/06/2026 09:23'],['تحديث أصل عقاري','خالد إبراهيم','07/08/2026 13:05']]
   },
-  'MN-2026-01933':{name:'محمد علي حسن',type:'ملف قاصر مرتبط بتركة',status:'فعال',officer:'خالد إبراهيم',assets:'42,850.500',beneficiaries:1,opened:'03/02/2026',deceased:'ملف قاصر مرتبط بتركة TR-2023-00612',id:'110223344',death:'—',court:'—',caseNo:'TR-2023-00612',subjectHeading:'بيانات القاصر',subjectNameLabel:'اسم القاصر',dateLabel:'تاريخ الميلاد'},
-  'HJ-2026-00204':{name:'علي جاسم محمد',type:'ملف محجور عليه',status:'جديد',officer:'نورة أحمد',assets:'19,600.000',beneficiaries:1,opened:'06/08/2026',deceased:'علي جاسم محمد',id:'770112233',death:'—',court:'المحكمة الكبرى المدنية',caseNo:'CV-2026-442',subjectHeading:'بيانات المحجور عليه',subjectNameLabel:'اسم المحجور عليه',dateLabel:'تاريخ الميلاد'},
-  'TR-2025-00876':{name:'ورثة يوسف محمود',type:'ملف تركة',status:'فعال',officer:'مريم صالح',assets:'310,220.750',beneficiaries:6,opened:'19/11/2025',deceased:'يوسف محمود علي',id:'540998877',death:'03/11/2025',court:'المحكمة الكبرى الشرعية',caseNo:'SH-2025-1198',subjectHeading:'بيانات المتوفى',subjectNameLabel:'اسم المتوفى',dateLabel:'تاريخ الوفاة'},
+  'MN-2026-01933':{name:'محمد علي حسن',type:'ملف قاصر مرتبط بتركة',status:'فعال',officer:'خالد إبراهيم',assets:'42,850.500',beneficiaries:1,opened:'03/02/2026',deceased:'ملف قاصر مرتبط بتركة TR-2023-00612',id:'110223344',death:'—',court:'—',caseNo:'TR-2023-00612',subjectHeading:'بيانات القاصر',subjectNameLabel:'اسم القاصر',dateLabel:'تاريخ الميلاد',subsidiaryAccounts:['MN-MH-01']},
+  'HJ-2026-00204':{name:'علي جاسم محمد',type:'ملف محجور عليه',status:'جديد',officer:'نورة أحمد',assets:'19,600.000',beneficiaries:1,opened:'06/08/2026',deceased:'علي جاسم محمد',id:'770112233',death:'—',court:'المحكمة الكبرى المدنية',caseNo:'CV-2026-442',subjectHeading:'بيانات المحجور عليه',subjectNameLabel:'اسم المحجور عليه',dateLabel:'تاريخ الميلاد',subsidiaryAccounts:['HJ-AJ-01']},
+  'TR-2025-00876':{name:'ورثة يوسف محمود',type:'ملف تركة',status:'فعال',officer:'مريم صالح',assets:'310,220.750',beneficiaries:6,opened:'19/11/2025',deceased:'يوسف محمود علي',id:'540998877',death:'03/11/2025',court:'المحكمة الكبرى الشرعية',caseNo:'SH-2025-1198',subjectHeading:'بيانات المتوفى',subjectNameLabel:'اسم المتوفى',dateLabel:'تاريخ الوفاة',subsidiaryAccounts:['EST-YM-01']},
   'MN-2024-01104':{name:'فاطمة حسن علي',type:'ملف تحويل وتسوية حسابات الرشد',status:'محول للرشد',officer:'خالد إبراهيم',assets:'61,125.000',beneficiaries:1,opened:'10/05/2024',deceased:'فاطمة حسن علي',id:'060708099',death:'18/05/2008',court:'وزارة العدل',caseNo:'TR-2021-00211',subjectHeading:'بيانات صاحب حساب الرشد',subjectNameLabel:'اسم صاحب الحساب',dateLabel:'تاريخ الميلاد',subsidiaryAccounts:['AD-FT-01']},
   'MI-2026-00041':{name:'سلمان يوسف علي',type:'ملف قاصر مستقل',status:'فعال',officer:'مريم صالح',assets:'27,300.000',beneficiaries:1,opened:'01/08/2026',deceased:'سلمان يوسف علي',id:'120512345',death:'12/05/2012',court:'المحكمة الكبرى الشرعية',caseNo:'MN-IND-2026-041',subjectHeading:'بيانات القاصر',subjectNameLabel:'اسم القاصر',dateLabel:'تاريخ الميلاد',subsidiaryAccounts:['MN-SL-01']}
 };
@@ -197,7 +205,10 @@ const subsidiaryAccounts=[
   {id:'EST-AH-05',parent:'210400',caseId:'TR-2024-00124',owner:'زينب أحمد يوسف الهاشمي',role:'وارث / ابنة',balance:160.000,opening:0,openingDate:'2026-07-01'},
   {id:'HJ-KH-01',parent:'210300',caseId:'HJ-2020-00031',owner:'خالد عبدالرحمن محمد البنعلي',role:'صاحب ملف محجور عليه',balance:70000.000,opening:68900.000,openingDate:'2026-07-01'},
   {id:'MN-SL-01',parent:'210100',caseId:'MI-2026-00041',owner:'سلمان يوسف علي',role:'قاصر',balance:27300.000,opening:27300.000,openingDate:'2026-07-01'},
-  {id:'AD-FT-01',parent:'210200',caseId:'MN-2024-01104',owner:'فاطمة حسن علي',role:'صاحب حساب رشد',balance:61125.000,opening:61125.000,openingDate:'2026-07-01'}
+  {id:'AD-FT-01',parent:'210200',caseId:'MN-2024-01104',owner:'فاطمة حسن علي',role:'صاحب حساب رشد',balance:61125.000,opening:61125.000,openingDate:'2026-07-01'},
+  {id:'MN-MH-01',parent:'210100',caseId:'MN-2026-01933',owner:'محمد علي حسن',role:'قاصر',balance:42850.500,opening:42850.500,openingDate:'2026-07-01'},
+  {id:'HJ-AJ-01',parent:'210300',caseId:'HJ-2026-00204',owner:'علي جاسم محمد',role:'صاحب ملف محجور عليه',balance:19600.000,opening:19600.000,openingDate:'2026-07-01'},
+  {id:'EST-YM-01',parent:'210400',caseId:'TR-2025-00876',owner:'ورثة يوسف محمود',role:'حساب تركة مجمع',balance:310220.750,opening:310220.750,openingDate:'2026-07-01'}
 ];
 
 const statementTransactions={
@@ -211,7 +222,10 @@ const statementTransactions={
     {date:'2026-07-28',ref:'PV-2026-0728',description:'صرف النفقة الشهرية المعتمدة',debit:900,credit:0}
   ],
   'MN-SL-01':[],
-  'AD-FT-01':[]
+  'AD-FT-01':[],
+  'MN-MH-01':[],
+  'HJ-AJ-01':[],
+  'EST-YM-01':[]
 };
 
 function getGeneral(code){return generalAccounts.find(a=>a.code===code)}
@@ -225,11 +239,39 @@ function financePanel(d){
   const linked=(d.subsidiaryAccounts||[]).map(id=>getSub(id)).filter(Boolean);
   const accounts=linked.length ? `
     <div class="detail-section-heading"><div><h4>الحسابات المساعدة المرتبطة بالملف</h4><p>كل حساب مساعد مرتبط بحساب أستاذ عام، وتظهر حركته مدين/دائن مع الرصيد الجاري.</p></div></div>
-    <div class="table-wrap"><table class="detail-table"><thead><tr><th>رقم الحساب المساعد</th><th>صاحب الحساب</th><th>حساب الأستاذ العام</th><th>الرصيد الحالي</th><th>الإجراء</th></tr></thead><tbody>
-    ${linked.map(a=>`<tr><td>${a.id}</td><td>${a.owner}</td><td>${getGeneral(a.parent)?.name||a.parent}</td><td>${money(a.balance)} د.ب</td><td><button class="btn btn-secondary statement-btn" data-account="${a.id}">عرض كشف الحركة المالية</button></td></tr>`).join('')}
+    <div class="table-wrap"><table class="detail-table responsive-table"><thead><tr><th>رقم الحساب المساعد</th><th>صاحب الحساب</th><th>حساب الأستاذ العام</th><th>الرصيد الحالي</th><th>الإجراء</th></tr></thead><tbody>
+    ${linked.map(a=>`<tr><td>${a.id}</td><td>${a.owner}</td><td>${getGeneral(a.parent)?.name||a.parent}</td><td>${money(a.balance)} د.ب</td><td><button class="btn btn-secondary statement-btn balance-details-btn" data-account="${a.id}">تفاصيل الرصيد</button></td></tr>`).join('')}
     </tbody></table></div>` : '';
   const oldFinance=(d.finance||[]).length?`<div class="detail-section-heading"><h4>حركات مختصرة على الملف</h4></div>${rowsTable(['الحركة','المبلغ (د.ب)','التاريخ'],d.finance)}`:'';
   return `${summary}${note}${accounts}${oldFinance}`;
+}
+
+function renderPartiesWithBalances(d){
+  const headers=[...(d.partyHeaders||['الاسم','الصفة','العمر','نسبة الاستحقاق'])];
+  const rows=[...(d.parties||[])];
+  const linked=(d.subsidiaryAccounts||[]).map(id=>getSub(id)).filter(Boolean);
+  const ownerIndex=headers.findIndex(h=>h.includes('الاسم'));
+  const augmented=[];
+  const used=new Set();
+  rows.forEach(row=>{
+    const owner=ownerIndex>=0?String(row[ownerIndex]||''):'';
+    const account=linked.find(a=>owner && (a.owner===owner || owner.includes(a.owner) || a.owner.includes(owner)));
+    if(account)used.add(account.id);
+    augmented.push([...row,account?`${money(account.balance)} د.ب`:'—',account?`<button class="btn btn-secondary balance-details-btn" data-account="${account.id}">تفاصيل الرصيد</button>`:'<span class="no-balance">لا يوجد حساب مساعد</span>']);
+  });
+  linked.filter(a=>!used.has(a.id)).forEach(a=>{
+    const row=new Array(headers.length).fill('—');
+    if(ownerIndex>=0)row[ownerIndex]=a.owner;
+    const roleIndex=headers.findIndex(h=>h.includes('الصفة'));
+    if(roleIndex>=0)row[roleIndex]=a.role;
+    augmented.push([...row,`${money(a.balance)} د.ب`,`<button class="btn btn-secondary balance-details-btn" data-account="${a.id}">تفاصيل الرصيد</button>`]);
+  });
+  if(!augmented.length && linked.length){
+    linked.forEach(a=>augmented.push([a.owner,a.role,`${money(a.balance)} د.ب`,`<button class="btn btn-secondary balance-details-btn" data-account="${a.id}">تفاصيل الرصيد</button>`]));
+    return rowsTable(['الاسم','الصفة','الرصيد الحالي','الإجراء'],augmented);
+  }
+  if(!augmented.length)augmented.push(['الطرف الرئيسي',d.type,'—','—'].slice(0,headers.length));
+  return rowsTable([...headers,'الرصيد الحالي','الإجراء'],augmented);
 }
 
 function showCase(id){
@@ -270,30 +312,33 @@ function showCase(id){
     </div>
     ${id==='TR-2024-00124'?'<div class="prototype-note warning-note">ملاحظة النموذج: توزيع العقارات بالتساوي بين الورثة الخمسة افتراض تجريبي فقط ولا يمثل القسمة الشرعية. الأنصبة الفعلية تحدد وفق حصر الورثة والفريضة الشرعية.</div>':''}
   `;
-  $('#detailParties').innerHTML=rowsTable(d.partyHeaders||['الاسم','الصفة','العمر','نسبة الاستحقاق'],d.parties||[['الطرف الرئيسي',d.type,'—','—']]);
+  $('#detailParties').innerHTML=renderPartiesWithBalances(d);
   $('#detailAssets').innerHTML=rowsTable(d.assetHeaders||['نوع الأصل','البيان','القيمة (د.ب)','الحالة'],d.assetRows||[['أصول مالية','رصيد الملف',d.assets,'مسجل']]);
   $('#detailFinance').innerHTML=financePanel(d);
   $('#detailRequests').innerHTML=rowsTable(['رقم الطلب','النوع','المبلغ','الحالة'],d.requests||[]);
   $('#detailDocs').innerHTML=rowsTable(['المستند','الحالة','تاريخ الإضافة'],d.docs||[['مستند أساسي','موجود',d.opened]]);
   $('#detailAudit').innerHTML=rowsTable(['الإجراء','المستخدم','الوقت'],d.audit||[['فتح الملف',d.officer,d.opened]]);
   bindStatementButtons($('#detailFinance'));
+  bindBalanceButtons($('#detailParties'));
+  enhanceResponsiveTables($('#caseModal'));
   openModal('caseModal');
 }
 
 function generalLedgerHTML(){
-  return rowsTable(
-    ['رقم الحساب','اسم الحساب','التصنيف','طبيعة الحساب','الرصيد التجريبي','الوصف'],
-    generalAccounts.map(a=>[a.code,a.name,a.category,a.nature,`${money(a.balance)} د.ب`,a.description])
-  );
+  const headers=['رقم الحساب','اسم الحساب','التصنيف','طبيعة الحساب','الرصيد التجريبي','الوصف','الإجراء'];
+  const rows=generalAccounts.map(a=>[a.code,a.name,a.category,a.nature,`${money(a.balance)} د.ب`,a.description,`<button class="btn btn-secondary general-balance-btn" data-general="${a.code}">تفاصيل الرصيد</button>`]);
+  return rowsTable(headers,rows);
 }
 function subsidiaryLedgerHTML(list=subsidiaryAccounts){
-  return `<div class="table-wrap"><table class="detail-table"><thead><tr><th>الحساب المساعد</th><th>الملف المرتبط</th><th>صاحب الحساب</th><th>الصفة</th><th>حساب الأستاذ العام</th><th>الرصيد</th><th>الإجراء</th></tr></thead><tbody>
-    ${list.map(a=>`<tr><td>${a.id}</td><td><button class="link-btn open-case-link" data-case="${a.caseId}">${a.caseId}</button></td><td>${a.owner}</td><td>${a.role}</td><td>${getGeneral(a.parent)?.name||a.parent}</td><td>${money(a.balance)} د.ب</td><td><button class="btn btn-secondary statement-btn" data-account="${a.id}">عرض كشف الحركة المالية</button></td></tr>`).join('')}
+  return `<div class="table-wrap"><table class="detail-table responsive-table"><thead><tr><th>الحساب المساعد</th><th>الملف المرتبط</th><th>صاحب الحساب</th><th>الصفة</th><th>حساب الأستاذ العام</th><th>الرصيد</th><th>الإجراء</th></tr></thead><tbody>
+    ${list.map(a=>`<tr><td>${a.id}</td><td><button class="link-btn open-case-link" data-case="${a.caseId}">${a.caseId}</button></td><td>${a.owner}</td><td>${a.role}</td><td>${getGeneral(a.parent)?.name||a.parent}</td><td>${money(a.balance)} د.ب</td><td><button class="btn btn-secondary statement-btn balance-details-btn" data-account="${a.id}">تفاصيل الرصيد</button></td></tr>`).join('')}
   </tbody></table></div>`;
 }
 function renderLedger(){
   if(!$('#generalLedgerTable'))return;
   $('#generalLedgerTable').innerHTML=generalLedgerHTML();
+  bindGeneralBalanceButtons($('#generalLedgerTable'));
+  enhanceResponsiveTables($('#ledgerModal'));
   const parentSelect=$('#subsidiaryParentFilter');
   if(parentSelect && parentSelect.options.length===1){
     generalAccounts.filter(a=>a.code.startsWith('21')).forEach(a=>{
@@ -315,6 +360,8 @@ function filterSubsidiary(){
   const list=subsidiaryAccounts.filter(a=>(!parent||a.parent===parent)&&(!q||`${a.id} ${a.caseId} ${a.owner} ${a.role}`.includes(q)));
   $('#subsidiaryAccountsTable').innerHTML=subsidiaryLedgerHTML(list);
   bindStatementButtons($('#subsidiaryAccountsTable'));
+  bindBalanceButtons($('#subsidiaryAccountsTable'));
+  enhanceResponsiveTables($('#subsidiaryAccountsTable'));
   $$('.open-case-link',$('#subsidiaryAccountsTable')).forEach(b=>b.addEventListener('click',()=>{closeModal('ledgerModal');showCase(b.dataset.case)}));
 }
 function renderStatement(accountId){
@@ -353,6 +400,46 @@ function renderStatement(accountId){
       </tbody></table></div>
       <div class="statement-foot">يعرض هذا الكشف حركة الحساب المساعد بصورة مشابهة لكشف الحساب البنكي. في هذا النموذج، زيادة الدائن ترفع رصيد حساب المستفيد المساعد، والمدين يخفضه. جميع البيانات والأرقام تجريبية.</div>
     </section>`;
+  enhanceResponsiveTables($('#statementOutput'));
+}
+
+function statementHTML(accountId,from='1900-01-01',to='2999-12-31'){
+  const account=getSub(accountId);
+  if(!account)return '<div class="prototype-note">لا يوجد حساب مساعد مرتبط بهذا الطرف.</div>';
+  const all=[...(statementTransactions[accountId]||[])].sort((a,b)=>a.date.localeCompare(b.date));
+  let opening=account.opening;
+  all.filter(t=>t.date<from).forEach(t=>opening+=t.credit-t.debit);
+  let running=opening;
+  const visible=all.filter(t=>t.date>=from&&t.date<=to).map(t=>{running+=t.credit-t.debit;return {...t,balance:running}});
+  const totalDebit=visible.reduce((sum,t)=>sum+t.debit,0),totalCredit=visible.reduce((sum,t)=>sum+t.credit,0);
+  const parent=getGeneral(account.parent);
+  return `<section class="bank-statement balance-statement">
+    <div class="statement-head"><div><span class="eyebrow">كشف تفاصيل الرصيد</span><h3>${account.owner}</h3><p>${account.id} • الملف ${account.caseId} • ${account.role}</p></div><div class="statement-account-box"><span>حساب الأستاذ العام المرتبط</span><strong>${parent?.code||account.parent} — ${parent?.name||''}</strong></div></div>
+    <div class="statement-summary"><div><span>الفترة</span><strong>${from} إلى ${to}</strong></div><div><span>الرصيد الافتتاحي</span><strong>${money(opening)} د.ب</strong></div><div><span>إجمالي المدين</span><strong>${money(totalDebit)} د.ب</strong></div><div><span>إجمالي الدائن</span><strong>${money(totalCredit)} د.ب</strong></div><div><span>الرصيد الختامي</span><strong>${money(running)} د.ب</strong></div></div>
+    <div class="table-wrap"><table class="statement-table responsive-table"><thead><tr><th>التاريخ</th><th>المرجع</th><th>تفاصيل الحركة</th><th>مدين</th><th>دائن</th><th>الرصيد بعد الحركة</th></tr></thead><tbody><tr class="opening-row"><td>${from}</td><td>OPEN</td><td>الرصيد الافتتاحي للفترة</td><td>—</td><td>—</td><td><strong>${money(opening)}</strong></td></tr>${visible.map(t=>`<tr><td>${t.date}</td><td>${t.ref}</td><td>${t.description}</td><td class="debit-cell">${t.debit?money(t.debit):'—'}</td><td class="credit-cell">${t.credit?money(t.credit):'—'}</td><td><strong>${money(t.balance)}</strong></td></tr>`).join('')||'<tr class="empty-row"><td colspan="6">لا توجد حركات خلال الفترة المحددة؛ الرصيد الختامي يساوي الرصيد الافتتاحي.</td></tr>'}</tbody></table></div>
+    <div class="statement-foot">الرصيد الحالي ناتج عن الرصيد الافتتاحي مضافًا إليه الحركات الدائنة ومخصومًا منه الحركات المدينة خلال الفترة. جميع البيانات في هذا النموذج تجريبية.</div>
+  </section>`;
+}
+let activeBalanceAccount='';
+function openBalanceDetails(accountId){
+  const account=getSub(accountId); if(!account)return toast('لا يوجد حساب مساعد مرتبط بهذا السجل');
+  activeBalanceAccount=accountId;
+  $('#balanceModalTitle').textContent=`تفاصيل رصيد ${account.owner}`;
+  $('#balanceModalMeta').textContent=`الحساب المساعد ${account.id} • الملف ${account.caseId} • الرصيد الحالي ${money(account.balance)} د.ب`;
+  const from=$('#balanceFrom')?.value||'1900-01-01',to=$('#balanceTo')?.value||'2999-12-31';
+  $('#balanceStatementOutput').innerHTML=statementHTML(accountId,from,to);
+  enhanceResponsiveTables($('#balanceStatementOutput'));
+  openModal('balanceModal');
+}
+function bindBalanceButtons(root=document){
+  $$('.balance-details-btn',root).forEach(b=>{if(b.dataset.balanceBound||b.dataset.bound)return;b.dataset.balanceBound='1';b.addEventListener('click',e=>{e.stopPropagation();openBalanceDetails(b.dataset.account)})});
+}
+function bindGeneralBalanceButtons(root=document){
+  $$('.general-balance-btn',root).forEach(b=>{if(b.dataset.bound)return;b.dataset.bound='1';b.addEventListener('click',()=>{
+    const code=b.dataset.general,subs=subsidiaryAccounts.filter(a=>a.parent===code);
+    if(!subs.length){toast('هذا الحساب العام لا يحتوي حسابات مساعدة في البيانات التجريبية الحالية');return}
+    $('#subsidiaryParentFilter').value=code;filterSubsidiary();$('[data-tab="ledger-subsidiary"]',$('#ledgerModal'))?.click();
+  })});
 }
 function openStatement(accountId){
   openModal('ledgerModal');
@@ -368,7 +455,7 @@ function bindStatementButtons(root=document){
   $$('.statement-btn',root).forEach(b=>{
     if(b.dataset.bound)return;
     b.dataset.bound='1';
-    b.addEventListener('click',()=>openStatement(b.dataset.account));
+    b.addEventListener('click',()=>openBalanceDetails(b.dataset.account));
   });
 }
 
@@ -458,9 +545,22 @@ function initWizard(){
   updateTypeUI();paint();
 }
 
+function filterAlerts(level='all',keyword=''){
+  const items=$$('.alert-center-item');
+  items.forEach(item=>{
+    const levelMatch=level==='all'||item.dataset.level===level;
+    const textMatch=!keyword||item.textContent.includes(keyword);
+    item.style.display=levelMatch&&textMatch?'':'none';
+  });
+  $$('.alert-filter-card').forEach(x=>x.classList.toggle('active',x.dataset.level===level));
+  const captions={all:'عرض جميع التنبيهات حسب الأولوية',high:'التنبيهات ذات الأولوية العالية',follow:'تنبيهات المتابعة القضائية والتشغيلية',money:'التنبيهات والأرصدة المالية'};
+  if($('#alertFilterCaption'))$('#alertFilterCaption').textContent=captions[level]||captions.all;
+}
 function openAlerts(filter=''){
   openModal('alertsModal');
-  if(filter)toast('تم فتح مركز التنبيهات على نوع التنبيه المحدد');
+  const level=filter==='unpaid-adulthood'?'money':(['unopened-estates','deceased-minors'].includes(filter)?'high':(filter?'follow':'all'));
+  filterAlerts(level,$('#alertSearchInput')?.value.trim()||'');
+  if(filter){const target=$(`.alert-center-item[data-key="${filter}"]`);target?.scrollIntoView({block:'center'});target?.classList.add('alert-focus');setTimeout(()=>target?.classList.remove('alert-focus'),1200)}
 }
 
 function initLedgerEvents(){
@@ -470,6 +570,8 @@ function initLedgerEvents(){
   $('#applyStatementFilter')?.addEventListener('click',()=>renderStatement($('#statementAccount')?.value));
   $('#statementAccount')?.addEventListener('change',()=>renderStatement($('#statementAccount').value));
   $('#ledgerExportBtn')?.addEventListener('click',()=>toast('تم تجهيز كشف حساب تجريبي للتصدير'));
+  $('#applyBalanceFilter')?.addEventListener('click',()=>activeBalanceAccount&&openBalanceDetails(activeBalanceAccount));
+  $('#balanceExportBtn')?.addEventListener('click',()=>toast('تم تجهيز كشف تفاصيل الرصيد للتصدير'));
   $('#openAdulthoodLedger')?.addEventListener('click',()=>{
     closeModal('alertsModal');renderLedger();openModal('ledgerModal');
     $('#subsidiaryParentFilter').value='210200';filterSubsidiary();
@@ -504,6 +606,9 @@ function initShell(){
   initTabs();
   $('#notificationsBtn')?.addEventListener('click',()=>openAlerts());
   $('#showAllAlertsBtn')?.addEventListener('click',()=>openAlerts());
+  $('#alertsMoreBtn')?.addEventListener('click',()=>openAlerts());
+  $$('.alert-filter-card').forEach(card=>card.addEventListener('click',()=>filterAlerts(card.dataset.level,$('#alertSearchInput')?.value.trim()||'')));
+  $('#alertSearchInput')?.addEventListener('input',()=>{const active=$('.alert-filter-card.active')?.dataset.level||'all';filterAlerts(active,$('#alertSearchInput').value.trim())});
   $$('.activity-btn').forEach(b=>b.addEventListener('click',()=>openAlerts(b.dataset.alertFilter)));
   $$('.alert-action').forEach(b=>{
     if(b.id==='openAdulthoodLedger')return;
@@ -529,6 +634,7 @@ function initShell(){
   $$('.modal-shell').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
   initWizard();
   initLedgerEvents();
+  enhanceResponsiveTables(document);
   renderLedger();
 }
 

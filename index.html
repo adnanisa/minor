@@ -169,17 +169,32 @@
           </div>
         </div>
 
-        <aside class="region">
-          <div class="region-header"><h2>تنبيهات العمل</h2><button id="showAllAlertsBtn" class="btn btn-ghost">عرض جميع التنبيهات</button></div>
+        <aside class="region alerts-region">
+          <div class="region-header alert-region-head">
+            <div><h2>تنبيهات العمل</h2><span class="region-subtitle">الأولوية الأعلى تظهر أولاً لتسهيل المتابعة اليومية.</span></div>
+            <button id="showAllAlertsBtn" class="btn btn-ghost">فتح مركز التنبيهات</button>
+          </div>
           <div class="region-body">
-            <div class="activity-list">
-              <button class="activity activity-btn alert-danger" data-alert-filter="unopened-estates"><div class="activity-icon">⚠</div><div><strong>متوفون لديهم قُصّر ولم يُفتح لهم ملف</strong><p>7 حالات واردة تحتاج إلى التحقق وفتح ملف تركة أو ربط القُصّر.</p></div></button>
-              <button class="activity activity-btn alert-dark" data-alert-filter="deceased-minors"><div class="activity-icon">✦</div><div><strong>قُصّر متوفون</strong><p>حالتان تحتاجان إلى إيقاف الإجراءات الجارية ومراجعة الأرصدة والمستحقات.</p></div></button>
-              <button class="activity activity-btn alert-warning" data-alert-filter="legal-cases"><div class="activity-icon">⚖</div><div><strong>قضايا تخص قاصرًا أو صاحب ملف</strong><p>9 قضايا مرتبطة بملفات الإدارة، منها 3 جلسات خلال 14 يومًا.</p></div></button>
-              <button class="activity activity-btn alert-money" data-alert-filter="unpaid-adulthood"><div class="activity-icon">د.ب</div><div><strong>مبالغ الرشد غير المصروفة</strong><p>إجمالي تجريبي 184,750.000 د.ب بانتظار استكمال إجراءات التسوية والصرف.</p></div></button>
-              <button class="activity activity-btn" data-alert-filter="late-approvals"><div class="activity-icon">!</div><div><strong>معاملات اعتماد متأخرة</strong><p>5 معاملات تجاوزت زمن الخدمة المستهدف.</p></div></button>
-              <button class="activity activity-btn" data-alert-filter="rent-due"><div class="activity-icon">🏠</div><div><strong>إيجارات مستحقة</strong><p>8 وحدات لديها تحصيل مستحق هذا الأسبوع.</p></div></button>
+            <div class="alerts-overview-strip">
+              <div><span>تنبيهات حرجة</span><strong>9</strong></div>
+              <div><span>جلسات قريبة</span><strong>3</strong></div>
+              <div><span>مبالغ معلقة</span><strong>184,750 د.ب</strong></div>
             </div>
+            <div class="alert-card-list">
+              <button class="alert-card-item priority-high activity-btn" data-alert-filter="unopened-estates">
+                <span class="alert-card-icon">⚠</span><span class="alert-card-main"><span class="alert-card-top"><strong>متوفون لديهم قُصّر دون ملف</strong><b class="alert-count">7 حالات</b></span><small>تحتاج إلى التحقق وفتح ملف تركة أو ربط القُصّر.</small></span><span class="alert-chevron">‹</span>
+              </button>
+              <button class="alert-card-item priority-high activity-btn" data-alert-filter="deceased-minors">
+                <span class="alert-card-icon">✦</span><span class="alert-card-main"><span class="alert-card-top"><strong>قُصّر متوفون</strong><b class="alert-count">حالتان</b></span><small>مراجعة الملف والأرصدة والمستحقات والإجراءات المفتوحة.</small></span><span class="alert-chevron">‹</span>
+              </button>
+              <button class="alert-card-item priority-medium activity-btn" data-alert-filter="legal-cases">
+                <span class="alert-card-icon">⚖</span><span class="alert-card-main"><span class="alert-card-top"><strong>قضايا مرتبطة بالملفات</strong><b class="alert-count">9 قضايا</b></span><small>3 جلسات خلال 14 يومًا وتتطلب متابعة الموظف المختص.</small></span><span class="alert-chevron">‹</span>
+              </button>
+              <button class="alert-card-item priority-money activity-btn" data-alert-filter="unpaid-adulthood">
+                <span class="alert-card-icon">د.ب</span><span class="alert-card-main"><span class="alert-card-top"><strong>مبالغ الرشد غير المصروفة</strong><b class="alert-count">184,750 د.ب</b></span><small>أرصدة بانتظار استكمال إجراءات التسوية والصرف.</small></span><span class="alert-chevron">‹</span>
+              </button>
+            </div>
+            <button id="alertsMoreBtn" class="alerts-more-btn">عرض جميع التنبيهات والإجراءات المطلوبة <span>←</span></button>
           </div>
         </aside>
       </section>
@@ -203,29 +218,7 @@
         </div>
       </section>
 
-      <section class="region" style="margin-top:16px;">
-        <div class="region-header"><h2>مساحة متابعة تفاصيل الملف</h2><span style="font-size:12px;color:#7b818a">البيانات الأساسية، الأصول، الطلبات، المستندات وسجل الإجراءات</span></div>
-        <div class="region-body" data-tabs>
-          <div class="tabs">
-            <button class="tab-btn active" data-tab="tab-overview">ملخص الملف</button>
-            <button class="tab-btn" data-tab="tab-assets">الأصول</button>
-            <button class="tab-btn" data-tab="tab-requests">الطلبات والموافقات</button>
-            <button class="tab-btn" data-tab="tab-docs">المستندات</button>
-            <button class="tab-btn" data-tab="tab-audit">سجل التدقيق</button>
-          </div>
-          <div id="tab-overview" class="tab-panel active">
-            <div class="placeholder-grid">
-              <div class="placeholder-card"><strong>البيانات الأساسية للملف</strong><span>نوع الملف، اسم صاحب الملف أو التركة، حالة الملف، تاريخ الفتح، والموظف المسؤول عن المتابعة.</span></div>
-              <div class="placeholder-card"><strong>الأطراف المرتبطة</strong><span>الأولياء، الأوصياء، المستفيدون، والجهات ذات العلاقة.</span></div>
-              <div class="placeholder-card"><strong>ملخص مالي</strong><span>الأرصدة، الإيرادات، المصروفات، والالتزامات.</span></div>
-            </div>
-          </div>
-          <div id="tab-assets" class="tab-panel"><div class="placeholder-card"><strong>منطقة الأصول والعقارات</strong><span>جدول تفاعلي لعرض العقارات والوحدات والحسابات البنكية والأصول الأخرى المرتبطة بالملف.</span></div></div>
-          <div id="tab-requests" class="tab-panel"><div class="placeholder-card"><strong>مسار الطلبات والموافقات</strong><span>يعرض حالة كل طلب، ومستوى المراجعة الحالي، وقرار الاعتماد، وسجل الإحالات بين الموظفين.</span></div></div>
-          <div id="tab-docs" class="tab-panel"><div class="placeholder-card"><strong>مستندات الملف</strong><span>رفع المستندات وتصنيفها مع توضيح حالة التحقق وتاريخ الإصدار أو الانتهاء.</span></div></div>
-          <div id="tab-audit" class="tab-panel"><div class="placeholder-card"><strong>سجل التدقيق والإجراءات</strong><span>يوضح من قام بالإجراء، ووقت التنفيذ، ونوع التعديل، والقيمة قبل التعديل وبعده.</span></div></div>
-        </div>
-      </section>
+
     </div>
   </main>
 </div>
@@ -300,24 +293,24 @@
 <div id="alertsModal" class="modal-shell" aria-hidden="true">
   <div class="modal-card alerts-card">
     <div class="modal-header"><div><span class="eyebrow">مركز التنبيهات التشغيلية</span><h2>جميع تنبيهات العمل</h2></div><button class="icon-btn modal-close" data-close="alertsModal" aria-label="إغلاق التنبيهات">✕</button></div>
-    <div class="region-body">
+    <div class="region-body alerts-center-body">
       <div class="alert-summary-grid">
-        <div class="alert-summary danger"><span>متوفون لديهم قُصّر دون ملف</span><strong>7</strong></div>
-        <div class="alert-summary dark"><span>قُصّر متوفون</span><strong>2</strong></div>
-        <div class="alert-summary warning"><span>قضايا مرتبطة بالملفات</span><strong>9</strong></div>
-        <div class="alert-summary money"><span>مبالغ الرشد غير المصروفة</span><strong>184,750.000 د.ب</strong></div>
+        <button class="alert-summary danger alert-filter-card active" data-level="all"><span>إجمالي التنبيهات النشطة</span><strong>31</strong><small>اضغط لعرض الكل</small></button>
+        <button class="alert-summary danger alert-filter-card" data-level="high"><span>أولوية عالية</span><strong>9</strong><small>حالات وفاة وملفات تحتاج إجراء</small></button>
+        <button class="alert-summary warning alert-filter-card" data-level="follow"><span>متابعة قضائية وتشغيلية</span><strong>17</strong><small>قضايا واعتمادات وإيجارات</small></button>
+        <button class="alert-summary money alert-filter-card" data-level="money"><span>مبالغ الرشد غير المصروفة</span><strong>184,750.000 د.ب</strong><small>تحتاج تسوية وصرف</small></button>
       </div>
-      <div class="table-wrap">
-        <table class="detail-table">
-          <thead><tr><th>نوع التنبيه</th><th>البيان</th><th>العدد / المبلغ</th><th>الأولوية</th><th>الإجراء المقترح</th></tr></thead>
-          <tbody>
-            <tr><td>حالات وفاة</td><td>متوفون لديهم قُصّر ولم يتم فتح ملف إدارة لهم</td><td>7 حالات</td><td><span class="status review">عالية</span></td><td><button class="btn btn-secondary alert-action">مراجعة الحالات وفتح الملفات</button></td></tr>
-            <tr><td>قُصّر متوفون</td><td>قُصّر مسجلون بالنظام وردت بيانات وفاة بشأنهم</td><td>حالتان</td><td><span class="status review">عالية</span></td><td><button class="btn btn-secondary alert-action">مراجعة الملف والأرصدة</button></td></tr>
-            <tr><td>قضايا</td><td>قضايا قضائية تخص قاصرًا أو صاحب ملف أو أموالًا مرتبطة بالملف</td><td>9 قضايا</td><td><span class="status new">متابعة</span></td><td><button class="btn btn-secondary alert-action">عرض القضايا المرتبطة</button></td></tr>
-            <tr><td>حسابات الرشد</td><td>أرصدة مستحقة وصلت لمرحلة الرشد ولم تُصرف بعد</td><td>184,750.000 د.ب</td><td><span class="status review">مالية</span></td><td><button class="btn btn-secondary alert-action" id="openAdulthoodLedger">عرض حساب الرشد العام</button></td></tr>
-            <tr><td>مراجعة واعتماد</td><td>معاملات تجاوزت زمن الخدمة المستهدف</td><td>5 معاملات</td><td><span class="status new">متوسطة</span></td><td><button class="btn btn-secondary alert-action">فتح صندوق المراجعة</button></td></tr>
-          </tbody>
-        </table>
+      <div class="alert-center-toolbar">
+        <div><strong>قائمة التنبيهات</strong><span id="alertFilterCaption">عرض جميع التنبيهات حسب الأولوية</span></div>
+        <label class="alert-search"><span>بحث</span><input id="alertSearchInput" placeholder="ابحث في التنبيهات..."></label>
+      </div>
+      <div class="alert-center-list" id="alertCenterList">
+        <article class="alert-center-item" data-level="high" data-key="unopened-estates"><div class="alert-center-icon danger">⚠</div><div class="alert-center-content"><div class="alert-center-title"><strong>متوفون لديهم قُصّر ولم يتم فتح ملف لهم</strong><span class="priority-chip high">أولوية عالية</span></div><p>وردت 7 حالات وفاة مرتبطة بقُصّر ولم يكتمل فتح ملف إدارة أو ربط القُصّر بالتركة.</p><div class="alert-meta"><span>7 حالات</span><span>المسؤول: إدارة الملفات</span><span>الإجراء خلال يوم عمل</span></div></div><button class="btn btn-secondary alert-action">مراجعة الحالات وفتح الملفات</button></article>
+        <article class="alert-center-item" data-level="high" data-key="deceased-minors"><div class="alert-center-icon dark">✦</div><div class="alert-center-content"><div class="alert-center-title"><strong>قُصّر متوفون مسجلون بالنظام</strong><span class="priority-chip high">أولوية عالية</span></div><p>توجد حالتان تتطلبان مراجعة الأرصدة والمستحقات وإيقاف الإجراءات المفتوحة قبل اتخاذ الإجراء النظامي.</p><div class="alert-meta"><span>حالتان</span><span>المسؤول: المراجعة</span><span>يتطلب تحقق</span></div></div><button class="btn btn-secondary alert-action">مراجعة الملفات والأرصدة</button></article>
+        <article class="alert-center-item" data-level="follow" data-key="legal-cases"><div class="alert-center-icon warning">⚖</div><div class="alert-center-content"><div class="alert-center-title"><strong>قضايا تخص قاصرًا أو صاحب ملف</strong><span class="priority-chip follow">متابعة</span></div><p>9 قضايا مرتبطة بملفات الإدارة، منها 3 جلسات خلال 14 يومًا وتحتاج إلى تجهيز المستندات والمتابعة.</p><div class="alert-meta"><span>9 قضايا</span><span>3 جلسات قريبة</span><span>المسؤول: الشؤون القانونية</span></div></div><button class="btn btn-secondary alert-action">عرض القضايا المرتبطة</button></article>
+        <article class="alert-center-item" data-level="money" data-key="unpaid-adulthood"><div class="alert-center-icon money">د.ب</div><div class="alert-center-content"><div class="alert-center-title"><strong>مبالغ الرشد غير المصروفة</strong><span class="priority-chip money">مالي</span></div><p>أرصدة وصلت إلى مرحلة الرشد ولم يتم صرفها بعد بسبب إجراءات تسوية أو مستندات أو اعتماد نهائي.</p><div class="alert-meta"><span>184,750.000 د.ب</span><span>حساب الرشد العام</span><span>يتطلب تسوية</span></div></div><button class="btn btn-secondary alert-action" id="openAdulthoodLedger">عرض تفاصيل حساب الرشد</button></article>
+        <article class="alert-center-item" data-level="follow" data-key="late-approvals"><div class="alert-center-icon warning">!</div><div class="alert-center-content"><div class="alert-center-title"><strong>معاملات اعتماد متأخرة</strong><span class="priority-chip follow">متابعة</span></div><p>5 معاملات تجاوزت زمن الخدمة المستهدف ولم يصدر بشأنها قرار اعتماد أو إعادة للاستكمال.</p><div class="alert-meta"><span>5 معاملات</span><span>تجاوز SLA</span><span>المسؤول: الاعتماد</span></div></div><button class="btn btn-secondary alert-action">فتح صندوق المراجعة</button></article>
+        <article class="alert-center-item" data-level="follow" data-key="rent-due"><div class="alert-center-icon info">🏠</div><div class="alert-center-content"><div class="alert-center-title"><strong>إيجارات مستحقة هذا الأسبوع</strong><span class="priority-chip follow">تشغيلي</span></div><p>8 وحدات عقارية لديها تحصيل مستحق خلال الأسبوع الحالي وتتطلب متابعة التحصيل أو المطابقة.</p><div class="alert-meta"><span>8 وحدات</span><span>هذا الأسبوع</span><span>المسؤول: العقارات</span></div></div><button class="btn btn-secondary alert-action">عرض التحصيلات المستحقة</button></article>
       </div>
       <div class="prototype-note">جميع الأعداد والمبالغ في مركز التنبيهات بيانات تجريبية لأغراض النموذج الأولي.</div>
     </div>
@@ -353,6 +346,20 @@
         </div>
         <div id="statementOutput"></div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div id="balanceModal" class="modal-shell balance-modal-shell" aria-hidden="true">
+  <div class="modal-card balance-card">
+    <div class="modal-header"><div><span class="eyebrow">تفاصيل الرصيد</span><h2 id="balanceModalTitle">كشف حركة الرصيد</h2><div id="balanceModalMeta" class="case-meta"></div></div><div class="actions"><button id="balanceExportBtn" class="btn btn-secondary">تصدير كشف الرصيد</button><button class="icon-btn modal-close" data-close="balanceModal" aria-label="إغلاق تفاصيل الرصيد">✕</button></div></div>
+    <div class="balance-modal-body">
+      <div class="statement-controls balance-controls">
+        <div class="form-field"><label>من تاريخ</label><input id="balanceFrom" type="date" value="2026-07-01"></div>
+        <div class="form-field"><label>إلى تاريخ</label><input id="balanceTo" type="date" value="2026-08-31"></div>
+        <button id="applyBalanceFilter" class="btn btn-primary">تحديث تفاصيل الرصيد</button>
+      </div>
+      <div id="balanceStatementOutput"></div>
     </div>
   </div>
 </div>
