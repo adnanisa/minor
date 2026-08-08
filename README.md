@@ -1,31 +1,29 @@
-# نموذج إدارة شئون وأموال القاصرين — Responsive Finance & Alerts Prototype
+# Minors Affairs & Funds — Bilingual Interactive Prototype
 
-نسخة تجريبية HTML/CSS/JavaScript مخصصة للبوابة الداخلية للموظفين، مبنية على النسخة المستقرة السابقة مع تحسينات العرض المالي والتنبيهات والتجاوب مع الكمبيوتر والجوال.
+Files:
+- `index.html` — login screen and the project entry point.
+- `portal.html` — internal staff portal.
+- `login.html` — backward-compatible redirect to `index.html`.
+- `styles.css` — responsive design system for desktop/tablet/mobile.
+- `app.js` — bilingual UI, navigation, file details, wizard, alerts, general ledger and account statements.
 
-## أهم التحسينات
+## Login
+Open `index.html` in a browser. For this prototype, pressing **Enter System / الدخول للنظام** always opens `portal.html`; credentials are not validated. The eKey prototype button also opens the portal.
 
-- إعادة تصميم «تنبيهات العمل» ببطاقات أولوية واضحة وملخص تشغيلي سريع.
-- مركز تنبيهات كامل مع تصفية حسب النوع/الأولوية وبحث نصي.
-- حذف مساحة «متابعة تفاصيل الملف» من الصفحة الرئيسية لتقليل التكرار.
-- تحسين «نظرة مالية على حسابات الأستاذ العام» لتعمل بصورة متناسقة على الكمبيوتر والجوال.
-- تحويل الجداول الكثيفة إلى بطاقات بيانات على الشاشات الصغيرة بدلاً من الجداول الأفقية العريضة.
-- تحسين Header، الأزرار، الفلاتر، الـWizard، شاشات تفاصيل الملفات، Modals والتبويبات على المقاسات الصغيرة.
-- إظهار «الرصيد الحالي» على مستوى الطرف داخل تبويب الأطراف عندما يكون للطرف حساب مساعد.
-- زر واضح باسم «تفاصيل الرصيد» على مستوى الطرف والحساب المساعد.
-- شاشة تفاصيل رصيد مستقلة تعرض:
-  - الرصيد الافتتاحي.
-  - إجمالي المدين.
-  - إجمالي الدائن.
-  - الرصيد الختامي.
-  - جميع الحركات بالتاريخ والمرجع والوصف.
-  - الرصيد بعد كل حركة (line-level running balance).
-- زر «تفاصيل الرصيد» على حسابات الأستاذ العام التي تحتوي حسابات مساعدة للانتقال إلى تفصيل الحسابات التابعة.
-- دعم أمثلة التركة والمحجور عليه السابقة والحسابات المساعدة المرتبطة بها.
+## Language
+Choose Arabic or English on the login screen. The selection is saved in `localStorage` (`mf_lang`) and applied to the portal automatically. The portal also includes a language switch in the header. Arabic uses RTL and English uses LTR.
 
-## التشغيل
+## Included prototype modules
+- Dashboard
+- All file types: Estate, Minor linked to estate, Independent minor, Interdicted person, Maturity settlement
+- Full file details with parties, assets, finance, requests, documents and audit tabs
+- Work alerts
+- General ledger and subsidiary accounts
+- Party-level and account-level current balances
+- Balance Details / Account Statement with debit, credit and running balance
+- Responsive mobile card layouts
+- New file wizard
+- Review & approval
+- Reports
 
-افتح `login.html` أو `index.html` مباشرة في المتصفح. لا يحتاج النموذج إلى Backend.
-
-## ملاحظة
-
-جميع البيانات والأسماء والأرقام والمبالغ في هذا النموذج افتراضية ولأغراض العرض والتصميم فقط.
+All names and identification numbers are fictional prototype data.

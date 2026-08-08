@@ -2,68 +2,84 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#7f1426" />
   <title>تسجيل الدخول | إدارة شئون وأموال القاصرين</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <main class="login-page">
-    <section class="login-visual" aria-label="هوية النظام">
-      <div class="login-brand">
-        <div class="brand-mark" aria-label="موضع الشعار الرسمي"></div>
-        <div class="brand-text">
-          <strong>مملكة البحرين — وزارة العدل والشئون الإسلامية والأوقاف</strong>
-          <span>إدارة شئون وأموال القاصرين</span>
+<body class="login-body">
+  <main class="login-shell">
+    <section class="login-brand-panel">
+      <div class="gov-brand">
+        <div class="emblem" aria-hidden="true">⚖</div>
+        <div>
+          <strong data-i18n="kingdom">مملكة البحرين</strong>
+          <span data-i18n="ministry">وزارة العدل والشئون الإسلامية والأوقاف</span>
         </div>
       </div>
-
-      <div class="login-hero">
-        <h1>نظام إدارة شئون وأموال القاصرين</h1>
-        <p>بوابة الموظفين الداخلية لإدارة الملفات، التركات، أموال المحجور عليهم، الأصول العقارية، العمليات المالية، والمراجعة والاعتماد ضمن مسار رقابي موحد.</p>
+      <div class="login-intro">
+        <div class="eyebrow" data-i18n="internalPortal">البوابة الداخلية للموظفين</div>
+        <h1 data-i18n="systemName">نظام إدارة شئون وأموال القاصرين</h1>
+        <p data-i18n="loginIntro">منصة موحدة لإدارة الملفات والأطراف والأصول والحسابات والمراجعة والاعتماد والرقابة المالية.</p>
       </div>
-
-      <div class="login-meta">
-        <span>🔒 دخول آمن</span>
-        <span>⚖ إدارة مركزية للصلاحيات</span>
-        <span>🧾 سجل تدقيق للعمليات</span>
+      <div class="feature-list">
+        <div><span>✓</span><b data-i18n="featureFiles">إدارة موحدة لجميع أنواع الملفات</b></div>
+        <div><span>✓</span><b data-i18n="featureLedger">أستاذ عام وحسابات مساعدة مترابطة</b></div>
+        <div><span>✓</span><b data-i18n="featureAudit">تنبيهات وسجل تدقيق ورقابة تشغيلية</b></div>
       </div>
+      <div class="prototype-tag" data-i18n="prototypeOnly">نموذج تجريبي للاستخدام الفني الداخلي فقط</div>
     </section>
 
-    <section class="login-panel-wrap">
-      <div class="login-panel">
-        <h2>تسجيل الدخول</h2>
-        <p>اختر طريقة الدخول المناسبة لحسابك الوظيفي.</p>
-
-        <div class="ekey-box">
-          <button id="ekeyBtn" class="ekey-btn" type="button">
-            <span class="ekey-badge">e</span>
-            الدخول الموحد عبر eKey Bahrain
-          </button>
-          <div class="helper">المسار الرئيسي المقترح للدخول الموحد. في بيئة الإنتاج يتم الربط مع موفر الهوية الحكومي الفعلي.</div>
+    <section class="login-form-panel">
+      <div class="login-card">
+        <div class="login-topline">
+          <div>
+            <h2 data-i18n="signIn">تسجيل الدخول</h2>
+            <p data-i18n="signInHint">اختر اللغة ثم طريقة الدخول المناسبة.</p>
+          </div>
+          <div class="language-picker" role="group" aria-label="Language">
+            <button class="lang-btn active" type="button" data-lang="ar">العربية</button>
+            <button class="lang-btn" type="button" data-lang="en">English</button>
+          </div>
         </div>
 
-        <div class="divider">أو دخول الموظفين الداخلي</div>
+        <button id="ekeyBtn" class="ekey-btn" type="button">
+          <span class="ekey-logo">e</span>
+          <span>
+            <strong data-i18n="ekeyLogin">الدخول الموحد عبر eKey Bahrain</strong>
+            <small data-i18n="ekeyHint">المسار الرئيسي للدخول الحكومي الموحد</small>
+          </span>
+          <span class="arrow" aria-hidden="true">←</span>
+        </button>
 
-        <form id="staffLogin" class="login-form">
-          <div class="form-field">
-            <label for="username">اسم المستخدم</label>
-            <input id="username" autocomplete="username" placeholder="مثال: n.almo" />
+        <div class="or-divider"><span data-i18n="orStaff">أو الدخول بحساب الموظف</span></div>
+
+        <form id="staffLogin" novalidate>
+          <label class="field">
+            <span data-i18n="username">اسم المستخدم</span>
+            <input id="username" name="username" autocomplete="username" data-i18n-placeholder="usernamePlaceholder" placeholder="مثال: n.almo" />
+          </label>
+          <label class="field">
+            <span data-i18n="password">كلمة المرور</span>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+              <button id="togglePassword" type="button" class="inline-icon" aria-label="Show password">◉</button>
+            </div>
+          </label>
+          <div class="login-row">
+            <label class="remember"><input type="checkbox" checked /> <span data-i18n="rememberMe">تذكرني على هذا الجهاز</span></label>
+            <button id="forgotBtn" type="button" class="text-btn" data-i18n="forgotPassword">نسيت كلمة المرور؟</button>
           </div>
-          <div class="form-field">
-            <label for="password">كلمة المرور</label>
-            <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" />
-          </div>
-          <div class="login-actions">
-            <a href="#" onclick="toast('سيتم ربط استعادة كلمة المرور لاحقًا'); return false;">نسيت كلمة المرور؟</a>
-            <button class="btn btn-primary" type="submit">دخول النظام</button>
-          </div>
+          <button id="loginBtn" class="primary-login" type="submit">
+            <span data-i18n="enterSystem">الدخول للنظام</span>
+            <span aria-hidden="true">←</span>
+          </button>
+          <div id="loginMessage" class="login-message" aria-live="polite"></div>
         </form>
-
-        <div class="login-footer">نسخة Prototype — للاستخدام الداخلي والتصميم الفني فقط</div>
       </div>
     </section>
   </main>
-  <div id="toast" class="toast"></div>
+  <div id="toast" class="toast" role="status"></div>
   <script src="app.js"></script>
 </body>
 </html>
