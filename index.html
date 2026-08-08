@@ -3,266 +3,349 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>لوحة التحكم | إدارة شئون وأموال القاصرين</title>
+  <meta name="theme-color" content="#7d1224" />
+  <title>نظام شئون وأموال القاصرين | البوابة الداخلية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<div class="app-shell">
-  <header class="app-header">
+<div class="app-shell t-PageBody">
+  <header class="app-header t-Header">
     <div class="header-section">
       <button id="navToggle" class="icon-btn" aria-label="طي القائمة">☰</button>
       <div class="header-brand">
-        <div class="brand-mark" aria-label="موضع الشعار الرسمي"></div>
-        <div>
+        <div class="brand-seal" title="موضع الشعار الرسمي"><span>مملكة<br>البحرين</span></div>
+        <div class="brand-copy">
           <strong>إدارة شئون وأموال القاصرين</strong>
           <small>وزارة العدل والشئون الإسلامية والأوقاف</small>
         </div>
       </div>
     </div>
-    <div class="header-section">
-      <button id="notificationsBtn" class="icon-btn" aria-label="التنبيهات">🔔<span class="badge-dot"></span></button>
+    <div class="header-tools">
+      <div class="global-search-wrap">
+        <span>⌕</span>
+        <input id="globalSearch" type="search" placeholder="بحث سريع: ملف، شخص، رقم شخصي..." />
+        <kbd>Ctrl K</kbd>
+      </div>
+      <button id="notificationsBtn" class="icon-btn notification-button" aria-label="التنبيهات">🔔<span id="notificationCount" class="count-badge">6</span></button>
       <div class="user-chip">
         <div class="avatar">ن</div>
         <div><strong>نواف محمد</strong><small>مسؤول النظام</small></div>
+        <span class="chev">⌄</span>
       </div>
     </div>
   </header>
 
-  <aside id="sidebar" class="sidebar" aria-label="القائمة الرئيسية">
-    <div class="nav-section-title">الرئيسية</div>
+  <aside id="sidebar" class="sidebar t-TreeNav" aria-label="القائمة الرئيسية">
     <nav class="nav-tree">
-      <button class="nav-item active" data-title="لوحة التحكم"><span class="nav-icon">▦</span><span class="nav-label">لوحة التحكم</span></button>
+      <div class="nav-section-title">مساحة العمل</div>
+      <button class="nav-item active" data-view="dashboard" data-title="لوحة التحكم"><span class="nav-icon">▦</span><span class="nav-label">لوحة التحكم</span></button>
 
       <div class="nav-group open">
-        <button class="nav-parent"><span class="nav-icon">🗂</span><span class="nav-label">إدارة الملفات</span><span class="nav-caret">⌄</span></button>
+        <button class="nav-parent"><span class="nav-icon">▤</span><span class="nav-label">مركز الملفات</span><span class="nav-caret">⌄</span></button>
         <div class="nav-children">
-          <button class="nav-item nav-child" data-title="جميع الملفات"><span class="nav-icon">•</span><span class="nav-label">جميع الملفات</span></button>
-          <button class="nav-item nav-child" data-title="ملفات القاصرين"><span class="nav-icon">•</span><span class="nav-label">ملفات القاصرين</span></button>
-          <button class="nav-item nav-child" data-title="ملفات المحجور عليهم"><span class="nav-icon">•</span><span class="nav-label">المحجور عليهم</span></button>
+          <button class="nav-item nav-child" data-view="all" data-title="جميع الملفات"><span class="dot"></span><span class="nav-label">جميع الملفات</span><span class="nav-count" id="navAllCount">0</span></button>
+          <button class="nav-item nav-child" data-view="estate" data-title="ملفات التركات"><span class="dot"></span><span class="nav-label">التركات</span><span class="nav-count" id="navEstateCount">0</span></button>
+          <button class="nav-item nav-child" data-view="minor" data-title="ملفات القاصرين"><span class="dot"></span><span class="nav-label">القاصرون</span><span class="nav-count" id="navMinorCount">0</span></button>
+          <button class="nav-item nav-child" data-view="interdicted" data-title="ملفات المحجور عليهم"><span class="dot"></span><span class="nav-label">المحجور عليهم</span><span class="nav-count" id="navInterdictedCount">0</span></button>
         </div>
       </div>
 
       <div class="nav-group">
-        <button class="nav-parent"><span class="nav-icon">⚖</span><span class="nav-label">التركات</span><span class="nav-caret">⌄</span></button>
+        <button class="nav-parent"><span class="nav-icon">✓</span><span class="nav-label">المراجعة والاعتماد</span><span class="nav-caret">⌄</span></button>
         <div class="nav-children">
-          <button class="nav-item nav-child" data-title="ملفات التركات"><span class="nav-icon">•</span><span class="nav-label">ملفات التركات</span></button>
-          <button class="nav-item nav-child" data-title="الورثة والأطراف"><span class="nav-icon">•</span><span class="nav-label">الورثة والأطراف</span></button>
-          <button class="nav-item nav-child" data-title="مستندات التركة"><span class="nav-icon">•</span><span class="nav-label">المستندات</span></button>
+          <button class="nav-item nav-child" data-view="review" data-title="صندوق المراجعة"><span class="dot"></span><span class="nav-label">صندوق المراجعة</span></button>
+          <button class="nav-item nav-child" data-view="approval" data-title="طلبات الاعتماد"><span class="dot"></span><span class="nav-label">طلبات الاعتماد</span></button>
+          <button class="nav-item nav-child" data-view="overdue" data-title="المعاملات المتأخرة"><span class="dot"></span><span class="nav-label">المعاملات المتأخرة</span></button>
         </div>
       </div>
 
       <div class="nav-group">
-        <button class="nav-parent"><span class="nav-icon">🏠</span><span class="nav-label">الأصول والعقارات</span><span class="nav-caret">⌄</span></button>
+        <button class="nav-parent"><span class="nav-icon">⌂</span><span class="nav-label">الأصول والإيرادات</span><span class="nav-caret">⌄</span></button>
         <div class="nav-children">
-          <button class="nav-item nav-child" data-title="العقارات"><span class="nav-icon">•</span><span class="nav-label">العقارات والوحدات</span></button>
-          <button class="nav-item nav-child" data-title="الإيجارات"><span class="nav-icon">•</span><span class="nav-label">عقود الإيجار</span></button>
-          <button class="nav-item nav-child" data-title="التحصيلات"><span class="nav-icon">•</span><span class="nav-label">التحصيلات</span></button>
+          <button class="nav-item nav-child" data-view="assets" data-title="سجل الأصول"><span class="dot"></span><span class="nav-label">سجل الأصول</span></button>
+          <button class="nav-item nav-child" data-view="properties" data-title="العقارات والوحدات"><span class="dot"></span><span class="nav-label">العقارات والوحدات</span></button>
+          <button class="nav-item nav-child" data-view="collections" data-title="التحصيلات"><span class="dot"></span><span class="nav-label">التحصيلات</span></button>
         </div>
       </div>
 
       <div class="nav-group">
-        <button class="nav-parent"><span class="nav-icon">💳</span><span class="nav-label">حسابات الأستاذ العام</span><span class="nav-caret">⌄</span></button>
+        <button class="nav-parent"><span class="nav-icon">◫</span><span class="nav-label">حسابات الأستاذ العام</span><span class="nav-caret">⌄</span></button>
         <div class="nav-children">
-          <button class="nav-item nav-child" data-title="دليل الحسابات"><span class="nav-icon">•</span><span class="nav-label">دليل الحسابات</span></button>
-          <button class="nav-item nav-child" data-title="القيود اليومية"><span class="nav-icon">•</span><span class="nav-label">القيود اليومية</span></button>
-          <button class="nav-item nav-child" data-title="المطابقة"><span class="nav-icon">•</span><span class="nav-label">المطابقة</span></button>
+          <button class="nav-item nav-child" data-view="ledger" data-title="دليل الحسابات"><span class="dot"></span><span class="nav-label">دليل الحسابات</span></button>
+          <button class="nav-item nav-child" data-view="journals" data-title="القيود اليومية"><span class="dot"></span><span class="nav-label">القيود اليومية</span></button>
+          <button class="nav-item nav-child" data-view="reconciliation" data-title="المطابقة"><span class="dot"></span><span class="nav-label">المطابقة</span></button>
         </div>
       </div>
 
       <div class="nav-group">
-        <button class="nav-parent"><span class="nav-icon">✅</span><span class="nav-label">المراجعة والاعتماد</span><span class="nav-caret">⌄</span></button>
+        <button class="nav-parent"><span class="nav-icon">▥</span><span class="nav-label">التقارير والرقابة</span><span class="nav-caret">⌄</span></button>
         <div class="nav-children">
-          <button class="nav-item nav-child" data-title="صندوق المراجعة"><span class="nav-icon">•</span><span class="nav-label">صندوق المراجعة</span></button>
-          <button class="nav-item nav-child" data-title="طلبات الاعتماد"><span class="nav-icon">•</span><span class="nav-label">طلبات الاعتماد</span></button>
-          <button class="nav-item nav-child" data-title="المعاملات المتأخرة"><span class="nav-icon">•</span><span class="nav-label">المعاملات المتأخرة</span></button>
-        </div>
-      </div>
-
-      <div class="nav-group">
-        <button class="nav-parent"><span class="nav-icon">📊</span><span class="nav-label">التقارير</span><span class="nav-caret">⌄</span></button>
-        <div class="nav-children">
-          <button class="nav-item nav-child" data-title="التقارير التشغيلية"><span class="nav-icon">•</span><span class="nav-label">تقارير تشغيلية</span></button>
-          <button class="nav-item nav-child" data-title="التقارير المالية"><span class="nav-icon">•</span><span class="nav-label">تقارير مالية</span></button>
-          <button class="nav-item nav-child" data-title="تقارير الرقابة"><span class="nav-icon">•</span><span class="nav-label">تقارير الرقابة</span></button>
+          <button class="nav-item nav-child" data-view="reports" data-title="التقارير التشغيلية"><span class="dot"></span><span class="nav-label">تشغيلية</span></button>
+          <button class="nav-item nav-child" data-view="financial-reports" data-title="التقارير المالية"><span class="dot"></span><span class="nav-label">مالية</span></button>
+          <button class="nav-item nav-child" data-view="control-reports" data-title="تقارير الرقابة"><span class="dot"></span><span class="nav-label">رقابية</span></button>
         </div>
       </div>
 
       <div class="nav-section-title">الإدارة</div>
-      <button class="nav-item" data-title="المستخدمون والصلاحيات"><span class="nav-icon">👥</span><span class="nav-label">المستخدمون والصلاحيات</span></button>
-      <button class="nav-item" data-title="الإعدادات"><span class="nav-icon">⚙</span><span class="nav-label">الإعدادات</span></button>
+      <button class="nav-item" data-view="users" data-title="المستخدمون والصلاحيات"><span class="nav-icon">♙</span><span class="nav-label">المستخدمون والصلاحيات</span></button>
+      <button class="nav-item" data-view="settings" data-title="الإعدادات"><span class="nav-icon">⚙</span><span class="nav-label">الإعدادات</span></button>
       <a class="nav-item" href="login.html"><span class="nav-icon">↪</span><span class="nav-label">تسجيل الخروج</span></a>
     </nav>
   </aside>
 
-  <main id="main" class="main">
-    <div class="breadcrumb-bar">
-      <span>الرئيسية</span><span>›</span><strong id="currentCrumb">لوحة التحكم</strong>
+  <main id="main" class="main t-Body-main">
+    <div class="breadcrumb-bar t-BreadcrumbRegion">
+      <div><span>الرئيسية</span><span>›</span><strong id="currentCrumb">لوحة التحكم</strong></div>
+      <div id="workingDate" class="working-date"></div>
     </div>
 
     <div class="content">
       <section class="page-heading">
         <div>
-          <h1>لوحة التحكم التشغيلية</h1>
-          <p>نظرة موحدة على ملفات القاصرين، المراجعات، الأصول، والتحويلات المرتبطة ببلوغ سن الرشد.</p>
+          <div class="eyebrow">المركز التشغيلي الداخلي</div>
+          <h1 id="pageTitle">لوحة التحكم التشغيلية</h1>
+          <p id="pageSubtitle">إدارة موحدة للتركات، أموال القاصرين، والمحجور عليهم مع متابعة الأصول والموافقات.</p>
         </div>
         <div class="actions">
           <button id="exportBtn" class="btn btn-secondary">⇩ تصدير</button>
-          <button id="newFileBtn" class="btn btn-primary">＋ إنشاء ملف جديد</button>
+          <button id="newFileBtn" class="btn btn-primary">＋ فتح ملف جديد</button>
         </div>
       </section>
 
-      <section class="kpi-grid" aria-label="المؤشرات الرئيسية">
-        <article class="kpi-card">
-          <div class="kpi-top"><span class="kpi-label">ملفات جديدة</span><span class="kpi-icon">📁</span></div>
-          <div class="kpi-value">24</div>
-          <div class="kpi-foot">+6 ملفات خلال آخر 7 أيام</div>
-        </article>
-        <article class="kpi-card gold">
-          <div class="kpi-top"><span class="kpi-label">قيد المراجعة</span><span class="kpi-icon">⌛</span></div>
-          <div class="kpi-value">17</div>
-          <div class="kpi-foot">5 معاملات تجاوزت 3 أيام</div>
-        </article>
-        <article class="kpi-card green">
-          <div class="kpi-top"><span class="kpi-label">ملفات فعالة</span><span class="kpi-icon">✓</span></div>
-          <div class="kpi-value">1,284</div>
-          <div class="kpi-foot">98.4% بيانات مكتملة</div>
-        </article>
-        <article class="kpi-card blue">
-          <div class="kpi-top"><span class="kpi-label">محولة لحسابات الرشد</span><span class="kpi-icon">↗</span></div>
-          <div class="kpi-value">39</div>
-          <div class="kpi-foot">هذا الشهر</div>
-        </article>
-      </section>
-
-      <section class="layout-grid">
-        <div class="region">
-          <div class="region-header">
-            <h2>متابعة الملفات</h2>
-            <div class="toolbar"><input id="searchInput" class="search" placeholder="بحث برقم الملف أو الاسم..." /></div>
-          </div>
-          <div class="table-wrap">
-            <table id="casesTable" aria-label="جدول الملفات">
-              <thead>
-                <tr><th>رقم الملف</th><th>نوع الملف</th><th>الاسم</th><th>الحالة</th><th>الموظف المختص</th><th>إجمالي الأصول (د.ب)</th><th>آخر إجراء</th><th>الإجراء</th></tr>
-              </thead>
-              <tbody>
-                <tr data-case="TR-2026-00481"><td>TR-2026-00481</td><td>تركة</td><td>ورثة أحمد عبدالله</td><td><span class="status review">قيد المراجعة</span></td><td>سارة يوسف</td><td class="amount">128,450.000</td><td>اليوم 10:42</td><td><button class="btn btn-secondary view-case">استعراض الملف</button></td></tr>
-                <tr data-case="MN-2026-01933"><td>MN-2026-01933</td><td>قاصر</td><td>محمد علي حسن</td><td><span class="status active">فعال</span></td><td>خالد إبراهيم</td><td class="amount">42,850.500</td><td>أمس 14:10</td><td><button class="btn btn-secondary view-case">استعراض الملف</button></td></tr>
-                <tr data-case="HJ-2026-00204"><td>HJ-2026-00204</td><td>محجور عليه</td><td>علي جاسم محمد</td><td><span class="status new">جديد</span></td><td>نورة أحمد</td><td class="amount">19,600.000</td><td>اليوم 09:15</td><td><button class="btn btn-secondary view-case">استعراض الملف</button></td></tr>
-                <tr data-case="TR-2025-00876"><td>TR-2025-00876</td><td>تركة</td><td>ورثة يوسف محمود</td><td><span class="status active">فعال</span></td><td>مريم صالح</td><td class="amount">310,220.750</td><td>07/08/2026</td><td><button class="btn btn-secondary view-case">استعراض الملف</button></td></tr>
-                <tr data-case="MN-2024-01104"><td>MN-2024-01104</td><td>قاصر</td><td>فاطمة حسن علي</td><td><span class="status closed">محول للرشد</span></td><td>خالد إبراهيم</td><td class="amount">61,125.000</td><td>05/08/2026</td><td><button class="btn btn-secondary view-case">استعراض الملف</button></td></tr>
-              </tbody>
-            </table>
-          </div>
+      <section id="dashboardSection">
+        <div class="kpi-grid" aria-label="المؤشرات الرئيسية">
+          <article class="kpi-card maroon" data-status-filter="new"><div class="kpi-top"><span>ملفات جديدة</span><span class="kpi-symbol">＋</span></div><div id="kpiNew" class="kpi-value">0</div><div class="kpi-foot">تحتاج بدء المعالجة</div></article>
+          <article class="kpi-card gold" data-status-filter="review"><div class="kpi-top"><span>قيد المراجعة</span><span class="kpi-symbol">◷</span></div><div id="kpiReview" class="kpi-value">0</div><div class="kpi-foot">تشمل المراجعة والاعتماد</div></article>
+          <article class="kpi-card green" data-status-filter="active"><div class="kpi-top"><span>ملفات فعالة</span><span class="kpi-symbol">✓</span></div><div id="kpiActive" class="kpi-value">0</div><div class="kpi-foot">تحت الإدارة والمتابعة</div></article>
+          <article class="kpi-card blue" data-status-filter="maturity"><div class="kpi-top"><span>تحويل للرشد</span><span class="kpi-symbol">↗</span></div><div id="kpiMaturity" class="kpi-value">0</div><div class="kpi-foot">ملفات في مسار التسليم</div></article>
+          <article class="kpi-card slate"><div class="kpi-top"><span>إجمالي الأصول</span><span class="kpi-symbol">د.ب</span></div><div id="kpiAssets" class="kpi-value compact">0</div><div class="kpi-foot">القيمة المسجلة لجميع الملفات</div></article>
         </div>
 
-        <aside class="region">
-          <div class="region-header"><h2>تنبيهات العمل</h2><button class="btn btn-ghost">عرض الكل</button></div>
-          <div class="region-body">
-            <div class="activity-list">
-              <div class="activity"><div class="activity-icon">!</div><div><strong>معاملات اعتماد متأخرة</strong><p>5 معاملات تجاوزت زمن الخدمة المستهدف.</p></div></div>
-              <div class="activity"><div class="activity-icon">🏠</div><div><strong>إيجارات مستحقة</strong><p>8 وحدات لديها تحصيل مستحق هذا الأسبوع.</p></div></div>
-              <div class="activity"><div class="activity-icon">🎂</div><div><strong>بلوغ سن الرشد</strong><p>3 ملفات ستنتقل لمرحلة التحويل خلال 30 يومًا.</p></div></div>
-              <div class="activity"><div class="activity-icon">📄</div><div><strong>مستندات ناقصة</strong><p>12 ملفًا يحتاج إلى استكمال وثائق داعمة.</p></div></div>
+        <div class="dashboard-grid">
+          <section class="region t-Region distribution-region">
+            <div class="region-header"><div><h2>توزيع الملفات</h2><p>حسب نوع الملف</p></div><button class="text-btn" data-view-jump="all">عرض الجميع</button></div>
+            <div id="typeDistribution" class="distribution-list"></div>
+          </section>
+          <section class="region t-Region queue-region">
+            <div class="region-header"><div><h2>أولوية العمل اليوم</h2><p>مؤشرات تستدعي المتابعة</p></div></div>
+            <div class="priority-list">
+              <button class="priority-item" data-quick-filter="overdue"><span class="priority-icon danger">!</span><div><strong id="overdueCount">0 معاملات متأخرة</strong><small>تجاوزت مدة المعالجة المستهدفة</small></div><span>←</span></button>
+              <button class="priority-item" data-quick-filter="missing"><span class="priority-icon warning">◫</span><div><strong id="missingCount">0 ملفات ناقصة</strong><small>مستندات أو بيانات رئيسية غير مكتملة</small></div><span>←</span></button>
+              <button class="priority-item" data-quick-filter="maturity"><span class="priority-icon info">↗</span><div><strong id="maturityCount">0 تحويلات للرشد</strong><small>تتطلب مراجعة وتسليم</small></div><span>←</span></button>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="filesRegion" class="region t-Region files-region">
+        <div class="region-header files-header">
+          <div><h2 id="tableTitle">مركز الملفات</h2><p id="tableSubtitle">جميع أنواع الملفات ضمن سجل موحد</p></div>
+          <div class="toolbar">
+            <div class="segmented" id="typeChips">
+              <button class="chip active" data-type="all">الكل</button>
+              <button class="chip" data-type="estate">تركة</button>
+              <button class="chip" data-type="minor">قاصر</button>
+              <button class="chip" data-type="interdicted">محجور عليه</button>
             </div>
           </div>
-        </aside>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-search"><span>⌕</span><input id="searchInput" type="search" placeholder="ابحث برقم الملف، الاسم، الرقم الشخصي أو الموظف..." /></div>
+          <select id="statusFilter"><option value="all">كل الحالات</option><option value="new">جديد</option><option value="review">قيد المراجعة</option><option value="active">فعال</option><option value="maturity">تحويل للرشد</option><option value="closed">مغلق</option></select>
+          <select id="officerFilter"><option value="all">كل الموظفين</option></select>
+          <button id="clearFilters" class="btn btn-ghost">مسح الفلاتر</button>
+          <div class="result-count"><strong id="resultCount">0</strong> ملف</div>
+        </div>
+        <div class="table-wrap a-IG">
+          <table id="casesTable" aria-label="جدول الملفات">
+            <thead><tr><th>رقم الملف</th><th>النوع</th><th>صاحب/موضوع الملف</th><th>الحالة</th><th>الموظف المختص</th><th>إجمالي الأصول</th><th>اكتمال الملف</th><th>آخر إجراء</th><th></th></tr></thead>
+            <tbody id="casesBody"></tbody>
+          </table>
+        </div>
+        <div id="emptyState" class="empty-state hidden"><div class="empty-icon">⌕</div><h3>لا توجد نتائج مطابقة</h3><p>غيّر معايير البحث أو أزل أحد الفلاتر.</p></div>
       </section>
 
-      <section class="region" style="margin-top:16px;">
-        <div class="region-header"><h2>مساحة العمل — نموذج APEX Regions</h2><span style="font-size:12px;color:#7b818a">Cards / Interactive Grid / Tabs</span></div>
-        <div class="region-body" data-tabs>
-          <div class="tabs">
-            <button class="tab-btn active" data-tab="tab-overview">ملخص الملف</button>
-            <button class="tab-btn" data-tab="tab-assets">الأصول</button>
-            <button class="tab-btn" data-tab="tab-requests">الطلبات والموافقات</button>
-            <button class="tab-btn" data-tab="tab-docs">المستندات</button>
-            <button class="tab-btn" data-tab="tab-audit">سجل التدقيق</button>
-          </div>
-          <div id="tab-overview" class="tab-panel active">
-            <div class="placeholder-grid">
-              <div class="placeholder-card"><strong>بيانات الملف</strong><span>Region لبيانات التركة/القاصر وحالة الملف والمسؤول عنه.</span></div>
-              <div class="placeholder-card"><strong>الأطراف المرتبطة</strong><span>الأولياء، الأوصياء، المستفيدون، والجهات ذات العلاقة.</span></div>
-              <div class="placeholder-card"><strong>ملخص مالي</strong><span>الأرصدة، الإيرادات، المصروفات، والالتزامات.</span></div>
-            </div>
-          </div>
-          <div id="tab-assets" class="tab-panel"><div class="placeholder-card"><strong>Interactive Grid Placeholder</strong><span>العقارات، الوحدات، الحسابات البنكية، والأصول الأخرى.</span></div></div>
-          <div id="tab-requests" class="tab-panel"><div class="placeholder-card"><strong>Approval Workflow Placeholder</strong><span>حالة الطلب، مستوى المراجعة، القرار، وسجل الإحالات.</span></div></div>
-          <div id="tab-docs" class="tab-panel"><div class="placeholder-card"><strong>Document Region Placeholder</strong><span>رفع وتصنيف المستندات مع حالة التحقق والإصدار.</span></div></div>
-          <div id="tab-audit" class="tab-panel"><div class="placeholder-card"><strong>Audit Trail Placeholder</strong><span>المستخدم، الوقت، الإجراء، والقيمة قبل وبعد التعديل.</span></div></div>
-        </div>
+      <section id="workspacePlaceholder" class="region t-Region hidden">
+        <div class="region-header"><div><h2 id="placeholderTitle">منطقة العمل</h2><p>نموذج أولي للواجهة المختارة</p></div></div>
+        <div class="placeholder-workspace" id="placeholderBody"></div>
       </section>
     </div>
   </main>
 </div>
 
+<!-- Notification drawer -->
+<aside id="notificationDrawer" class="drawer" aria-hidden="true">
+  <div class="drawer-header"><div><span class="eyebrow">التنبيهات</span><h2>مركز التنبيهات</h2></div><button class="icon-btn" data-drawer-close>✕</button></div>
+  <div class="drawer-body">
+    <button class="notification-item unread"><span class="notification-icon danger">!</span><div><strong>ملف HJ-2026-00204 ناقص مستند قرار المحكمة</strong><small>منذ 35 دقيقة</small></div></button>
+    <button class="notification-item unread"><span class="notification-icon warning">◷</span><div><strong>طلب صرف RQ-2026-881 ينتظر المراجعة</strong><small>منذ ساعتين</small></div></button>
+    <button class="notification-item"><span class="notification-icon info">↗</span><div><strong>ملف قاصر يقترب من مسار تحويل الرشد</strong><small>أمس</small></div></button>
+  </div>
+  <div class="drawer-footer"><button id="markNotifications" class="btn btn-secondary full">تحديد الكل كمقروء</button></div>
+</aside>
+<div id="drawerBackdrop" class="drawer-backdrop"></div>
+
+<!-- NEW FILE WIZARD -->
 <div id="wizardModal" class="modal-shell" aria-hidden="true">
   <div class="modal-card wizard-card">
-    <div class="modal-header"><div><span class="eyebrow">فتح تركة جديدة</span><h2>معالج إنشاء ملف التركة</h2></div><button class="icon-btn modal-close" data-close="wizardModal">✕</button></div>
-    <div class="wizard-steps">
-      <button class="wizard-step active" data-step="0"><span>1</span>المعلومات الرئيسية</button>
-      <button class="wizard-step" data-step="1"><span>2</span>الأطراف والورثة</button>
-      <button class="wizard-step" data-step="2"><span>3</span>الأصول والأموال</button>
-      <button class="wizard-step" data-step="3"><span>4</span>المستندات والتكليف</button>
-      <button class="wizard-step" data-step="4"><span>5</span>المراجعة والإنشاء</button>
+    <div class="modal-header sticky">
+      <div><span class="eyebrow">معالج فتح ملف</span><h2 id="wizardTitle">فتح ملف جديد</h2><p id="wizardSubtitle">اختر نوع الملف ليتم تهيئة النموذج والإجراءات المطلوبة تلقائياً.</p></div>
+      <button class="icon-btn modal-close" data-close="wizardModal">✕</button>
     </div>
-    <form id="estateWizard" class="wizard-body">
+    <div class="wizard-progress"><div id="wizardProgressBar"></div></div>
+    <div class="wizard-steps" id="wizardSteps">
+      <button class="wizard-step active" data-step="0"><span>1</span><em>نوع الملف</em></button>
+      <button class="wizard-step" data-step="1"><span>2</span><em>المعلومات الرئيسية</em></button>
+      <button class="wizard-step" data-step="2"><span>3</span><em>الأطراف</em></button>
+      <button class="wizard-step" data-step="3"><span>4</span><em>الأصول</em></button>
+      <button class="wizard-step" data-step="4"><span>5</span><em>المستندات والمسار</em></button>
+      <button class="wizard-step" data-step="5"><span>6</span><em>المراجعة</em></button>
+    </div>
+
+    <form id="caseWizard" class="wizard-body" autocomplete="off">
       <section class="wizard-panel active" data-panel="0">
-        <div class="section-title"><h3>بيانات التركة والمتوفى</h3><p>تستخدم هذه البيانات كأساس للملف الرئيسي.</p></div>
-        <div class="form-grid">
-          <div class="form-field"><label>نوع الملف *</label><select required><option>تركة</option></select></div>
-          <div class="form-field"><label>رقم هوية المتوفى *</label><input required placeholder="مثال: 880000000" /></div>
-          <div class="form-field span-2"><label>اسم المتوفى بالكامل *</label><input required placeholder="الاسم كما في المستند الرسمي" /></div>
-          <div class="form-field"><label>تاريخ الوفاة *</label><input type="date" required /></div>
-          <div class="form-field"><label>رقم شهادة الوفاة</label><input placeholder="رقم الشهادة" /></div>
-          <div class="form-field"><label>رقم القضية / الحصر</label><input placeholder="إن وجد" /></div>
-          <div class="form-field"><label>المحكمة المختصة</label><select><option>المحكمة الكبرى الشرعية</option><option>أخرى</option></select></div>
-          <div class="form-field span-2"><label>ملاحظات أولية</label><textarea placeholder="أي معلومات مهمة عند فتح الملف"></textarea></div>
+        <div class="section-title"><h3>ما نوع الملف المراد فتحه؟</h3><p>سيغيّر النظام الحقول والأطراف والمستندات المطلوبة حسب النوع.</p></div>
+        <div class="case-type-grid">
+          <label class="case-type-card selected"><input type="radio" name="caseType" value="estate" checked><span class="type-icon">⚖</span><div><strong>ملف تركة</strong><p>ملف رئيسي للمتوفى مع الورثة والقاصرين والأصول المشتركة.</p><small>TR</small></div><span class="checkmark">✓</span></label>
+          <label class="case-type-card"><input type="radio" name="caseType" value="minor"><span class="type-icon">◉</span><div><strong>ملف أموال قاصر</strong><p>ملف مستقل لإدارة مال قاصر أو أصول خاصة به خارج ملف تركة رئيسي.</p><small>MN</small></div><span class="checkmark">✓</span></label>
+          <label class="case-type-card"><input type="radio" name="caseType" value="interdicted"><span class="type-icon">§</span><div><strong>ملف محجور عليه</strong><p>إدارة أموال شخص بالغ خاضع لقرار حجر مع القيم والأصول.</p><small>HJ</small></div><span class="checkmark">✓</span></label>
+        </div>
+        <div id="typeHelp" class="info-banner"><strong>ملف التركة:</strong> سيتم إنشاء ملف رئيسي ويمكن ربط سجلات القاصرين المستفيدين به.</div>
+      </section>
+
+      <section class="wizard-panel" data-panel="1">
+        <div class="section-title"><h3 id="primaryStepTitle">المعلومات الرئيسية للتركة</h3><p id="primaryStepHint">أدخل بيانات المتوفى والمرجع القضائي الأساسي.</p></div>
+        <div id="dynamicPrimaryFields" class="form-grid"></div>
+      </section>
+
+      <section class="wizard-panel" data-panel="2">
+        <div class="section-title"><h3 id="partiesStepTitle">الأطراف والورثة</h3><p>أضف الأشخاص المرتبطين بالملف وصفة كل منهم.</p></div>
+        <div class="repeat-card add-record-card">
+          <div class="form-grid compact-grid">
+            <label class="form-field"><span>الاسم الكامل</span><input id="partyName" type="text" placeholder="الاسم الرباعي"></label>
+            <label class="form-field"><span>الصفة</span><select id="partyRole"></select></label>
+            <label class="form-field"><span>الرقم الشخصي</span><input id="partyId" inputmode="numeric" placeholder="CPR"></label>
+            <label class="form-field"><span id="partyExtraLabel">نسبة الاستحقاق %</span><input id="partyExtra" type="text" placeholder="مثال: 25"></label>
+          </div>
+          <button type="button" class="btn btn-secondary" id="addParty">＋ إضافة الطرف</button>
+        </div>
+        <div id="partyList" class="record-list"></div>
+      </section>
+
+      <section class="wizard-panel" data-panel="3">
+        <div class="section-title"><h3>الأصول والأموال</h3><p>أضف الأصول المعلومة حالياً. يمكن استكمال التقييم والمطابقة لاحقاً.</p></div>
+        <div class="asset-picker">
+          <button type="button" data-asset="عقار" data-icon="⌂"><span>⌂</span>عقار</button>
+          <button type="button" data-asset="حساب بنكي" data-icon="▣"><span>▣</span>حساب بنكي</button>
+          <button type="button" data-asset="استثمار / أسهم" data-icon="↗"><span>↗</span>استثمار / أسهم</button>
+          <button type="button" data-asset="مركبة" data-icon="◇"><span>◇</span>مركبة</button>
+          <button type="button" data-asset="نقد" data-icon="د.ب"><span>د.ب</span>نقد</button>
+          <button type="button" data-asset="أصل آخر" data-icon="＋"><span>＋</span>أصل آخر</button>
+        </div>
+        <div id="assetEditor" class="inline-editor hidden">
+          <div class="inline-editor-head"><strong id="assetEditorTitle">إضافة أصل</strong><button type="button" class="text-btn" id="cancelAsset">إلغاء</button></div>
+          <div class="form-grid compact-grid">
+            <label class="form-field"><span>وصف الأصل</span><input id="assetDescription" type="text" placeholder="مثال: عقار 1842 - مدينة حمد"></label>
+            <label class="form-field"><span>القيمة التقديرية (د.ب)</span><input id="assetValue" type="number" min="0" step="0.001" placeholder="0.000"></label>
+            <label class="form-field"><span>حالة التحقق</span><select id="assetStatus"><option>قيد التحقق</option><option>موثق</option><option>مطابق</option><option>قيد التقييم</option></select></label>
+            <label class="form-field"><span>مرجع / رقم</span><input id="assetReference" type="text" placeholder="حساب، سند، لوحة..."></label>
+          </div>
+          <button type="button" class="btn btn-primary" id="saveAsset">حفظ الأصل</button>
+        </div>
+        <div id="assetList" class="record-list asset-records"></div>
+        <div class="asset-total"><span>إجمالي القيمة المسجلة</span><strong id="wizardAssetTotal">0.000 د.ب</strong></div>
+      </section>
+
+      <section class="wizard-panel" data-panel="4">
+        <div class="section-title"><h3>المستندات والتكليف ومسار المراجعة</h3><p>حدد المستندات المتوفرة وموظف الملف ومسار البداية.</p></div>
+        <div class="two-column-layout">
+          <div>
+            <h4 class="mini-heading">قائمة المستندات</h4>
+            <div id="documentsChecklist" class="document-checklist"></div>
+          </div>
+          <div>
+            <h4 class="mini-heading">التكليف</h4>
+            <div class="form-stack">
+              <label class="form-field"><span>الموظف المختص</span><select id="wizardOfficer"><option>سارة يوسف</option><option>خالد إبراهيم</option><option>نورة أحمد</option><option>مريم صالح</option><option>أحمد سلمان</option></select></label>
+              <label class="form-field"><span>أولوية الملف</span><select id="wizardPriority"><option value="normal">عادية</option><option value="high">عالية</option><option value="urgent">عاجلة</option></select></label>
+              <label class="form-field"><span>حالة البداية</span><select id="wizardInitialStatus"><option value="new">جديد</option><option value="review">قيد المراجعة</option><option value="active">فعال</option></select></label>
+              <label class="form-field"><span>ملاحظات داخلية</span><textarea id="wizardNotes" placeholder="ملاحظة للموظف أو فريق المراجعة..."></textarea></label>
+            </div>
+          </div>
         </div>
       </section>
-      <section class="wizard-panel" data-panel="1">
-        <div class="section-title"><h3>الأطراف والورثة</h3><p>أضف القاصرين والورثة والأولياء والأوصياء والجهات المرتبطة.</p></div>
-        <div class="repeat-card"><div class="form-grid"><div class="form-field"><label>صفة الطرف *</label><select><option>قاصر / وارث</option><option>ولي</option><option>وصي</option><option>وارث بالغ</option><option>وكيل</option></select></div><div class="form-field"><label>الرقم الشخصي *</label><input placeholder="الرقم الشخصي" /></div><div class="form-field span-2"><label>الاسم الكامل *</label><input placeholder="اسم الطرف" /></div><div class="form-field"><label>تاريخ الميلاد</label><input type="date" /></div><div class="form-field"><label>نسبة الاستحقاق</label><input placeholder="مثال 25%" /></div></div></div>
-        <button type="button" class="btn btn-secondary" id="addParty">＋ إضافة طرف آخر</button>
-        <div id="partyList" class="mini-list"><div><strong>لم تتم إضافة أطراف إضافية بعد</strong><span>يمكن إضافة أكثر من وارث أو ولي داخل النموذج.</span></div></div>
-      </section>
-      <section class="wizard-panel" data-panel="2">
-        <div class="section-title"><h3>الأصول والأموال</h3><p>سجّل الأصول الأولية، ويمكن استكمال التفاصيل لاحقًا من ملف التركة.</p></div>
-        <div class="asset-choice"><button type="button" data-asset="عقار">🏠 عقار</button><button type="button" data-asset="حساب بنكي">🏦 حساب بنكي</button><button type="button" data-asset="نقد">💵 نقد</button><button type="button" data-asset="أسهم / استثمار">📈 أسهم / استثمار</button><button type="button" data-asset="مركبة">🚗 مركبة</button><button type="button" data-asset="أصل آخر">＋ أصل آخر</button></div>
-        <div id="assetList" class="mini-list"><div><strong>لا توجد أصول مسجلة</strong><span>اختر نوع الأصل لإضافته إلى التركة.</span></div></div>
-      </section>
-      <section class="wizard-panel" data-panel="3">
-        <div class="section-title"><h3>المستندات والتكليف</h3><p>حدد المستندات الأساسية والموظف المسؤول عن متابعة الملف.</p></div>
-        <div class="check-grid"><label><input type="checkbox" checked> شهادة الوفاة</label><label><input type="checkbox"> الفريضة الشرعية</label><label><input type="checkbox"> حكم / قرار المحكمة</label><label><input type="checkbox"> إثباتات الهوية</label><label><input type="checkbox"> مستندات الملكية</label><label><input type="checkbox"> كشوف الحسابات</label></div>
-        <div class="form-grid top-gap"><div class="form-field"><label>الموظف المختص *</label><select required><option>سارة يوسف</option><option>خالد إبراهيم</option><option>مريم صالح</option></select></div><div class="form-field"><label>أولوية الملف</label><select><option>عادية</option><option>عالية</option><option>عاجلة</option></select></div><div class="form-field span-2"><label>ملاحظات التكليف</label><textarea placeholder="تعليمات المتابعة"></textarea></div></div>
-      </section>
-      <section class="wizard-panel" data-panel="4">
-        <div class="section-title"><h3>مراجعة قبل إنشاء الملف</h3><p>سيتم إنشاء رقم ملف تلقائي وحفظه بحالة «جديد / تحت استكمال البيانات».</p></div>
-        <div class="review-grid"><div><span>نوع الملف</span><strong>تركة</strong></div><div><span>الحالة الأولية</span><strong>جديد</strong></div><div><span>مسار المراجعة</span><strong>مطابقة ← مراجعة ← تفعيل</strong></div><div><span>سجل التدقيق</span><strong>مفعّل تلقائيًا</strong></div></div>
-        <div class="notice-box">بعد الإنشاء يمكن فتح الملف مباشرة لاستكمال بيانات كل قاصر وربط الحسابات والعقارات والعقود والمستندات التفصيلية.</div>
+
+      <section class="wizard-panel" data-panel="5">
+        <div class="section-title"><h3>مراجعة الملف قبل الإنشاء</h3><p>راجع الملخص ثم أنشئ الملف. جميع البيانات تجريبية داخل النموذج الأولي.</p></div>
+        <div id="wizardReview" class="review-layout"></div>
       </section>
     </form>
-    <div class="wizard-footer"><button type="button" class="btn btn-secondary" id="wizardPrev">السابق</button><div class="footer-actions"><button type="button" class="btn btn-ghost modal-close" data-close="wizardModal">إلغاء</button><button type="button" class="btn btn-primary" id="wizardNext">التالي</button><button type="button" class="btn btn-primary hidden" id="wizardCreate">إنشاء ملف التركة</button></div></div>
+    <div class="wizard-footer sticky-footer">
+      <button type="button" class="btn btn-secondary" id="wizardPrev">السابق</button>
+      <div class="wizard-step-counter"><span id="stepCounter">1</span> / 6</div>
+      <div class="footer-actions"><button type="button" class="btn btn-ghost modal-close" data-close="wizardModal">إلغاء</button><button type="button" class="btn btn-primary" id="wizardNext">التالي</button><button type="button" class="btn btn-primary hidden" id="wizardCreate">إنشاء الملف</button></div>
+    </div>
   </div>
 </div>
 
+<!-- CASE DETAILS -->
 <div id="caseModal" class="modal-shell" aria-hidden="true">
   <div class="modal-card case-card">
-    <div class="modal-header case-head"><div><span class="eyebrow">ملف متكامل</span><h2 id="caseTitle">ملف التركة</h2><div id="caseMeta" class="case-meta"></div></div><div class="actions"><button class="btn btn-secondary">طباعة ملخص</button><button class="btn btn-primary">إجراء جديد</button><button class="icon-btn modal-close" data-close="caseModal">✕</button></div></div>
-    <div class="case-summary" id="caseSummary"></div>
-    <div class="case-tabs" data-tabs>
-      <div class="tabs sticky-tabs"><button class="tab-btn active" data-tab="detail-overview">البيانات الرئيسية</button><button class="tab-btn" data-tab="detail-parties">الأطراف</button><button class="tab-btn" data-tab="detail-assets">الأصول والعقارات</button><button class="tab-btn" data-tab="detail-finance">الحسابات والحركات</button><button class="tab-btn" data-tab="detail-requests">الطلبات والموافقات</button><button class="tab-btn" data-tab="detail-docs">المستندات</button><button class="tab-btn" data-tab="detail-audit">سجل الإجراءات</button></div>
-      <div id="detail-overview" class="tab-panel active"><div id="detailOverview"></div></div>
-      <div id="detail-parties" class="tab-panel"><div id="detailParties"></div></div>
-      <div id="detail-assets" class="tab-panel"><div id="detailAssets"></div></div>
-      <div id="detail-finance" class="tab-panel"><div id="detailFinance"></div></div>
-      <div id="detail-requests" class="tab-panel"><div id="detailRequests"></div></div>
-      <div id="detail-docs" class="tab-panel"><div id="detailDocs"></div></div>
-      <div id="detail-audit" class="tab-panel"><div id="detailAudit"></div></div>
+    <div class="case-hero">
+      <div class="case-hero-top">
+        <div class="case-heading"><div id="caseTypeBadge" class="type-badge"></div><div><span id="caseIdLabel" class="eyebrow"></span><h2 id="caseTitle"></h2><p id="caseMeta"></p></div></div>
+        <button class="icon-btn inverse modal-close" data-close="caseModal">✕</button>
+      </div>
+      <div id="caseSummary" class="case-summary"></div>
+      <div class="case-actions">
+        <button class="btn light" id="caseAddAction">＋ إضافة إجراء</button>
+        <button class="btn light" id="caseCreateRequest">إنشاء طلب</button>
+        <button class="btn light" id="caseChangeStatus">تغيير الحالة</button>
+        <button class="btn light" id="caseAssign">تغيير الموظف</button>
+        <button class="btn light" id="casePrint">طباعة الملخص</button>
+      </div>
+    </div>
+    <div class="case-body" data-tabs>
+      <div class="case-side-panel">
+        <div class="side-progress"><div class="progress-circle"><strong id="caseCompletion">0%</strong><span>اكتمال الملف</span></div></div>
+        <div class="side-section"><h4>بيانات سريعة</h4><div id="quickFacts" class="quick-facts"></div></div>
+        <div class="side-section"><h4>الملفات المرتبطة</h4><div id="relatedCases" class="related-list"></div></div>
+      </div>
+      <div class="case-main-panel">
+        <div class="tabs case-tabs">
+          <button class="tab-btn active" data-tab="detailOverview">نظرة عامة</button>
+          <button class="tab-btn" data-tab="detailParties">الأطراف</button>
+          <button class="tab-btn" data-tab="detailAssets">الأصول والعقارات</button>
+          <button class="tab-btn" data-tab="detailFinance">الحسابات والحركات</button>
+          <button class="tab-btn" data-tab="detailRequests">الطلبات والموافقات</button>
+          <button class="tab-btn" data-tab="detailDocs">المستندات</button>
+          <button class="tab-btn" data-tab="detailAudit">سجل التدقيق</button>
+        </div>
+        <section id="detailOverview" class="tab-panel active"></section>
+        <section id="detailParties" class="tab-panel"></section>
+        <section id="detailAssets" class="tab-panel"></section>
+        <section id="detailFinance" class="tab-panel"></section>
+        <section id="detailRequests" class="tab-panel"></section>
+        <section id="detailDocs" class="tab-panel"></section>
+        <section id="detailAudit" class="tab-panel"></section>
+      </div>
     </div>
   </div>
 </div>
-<div id="toast" class="toast"></div>
+
+<!-- Generic action modal -->
+<div id="actionModal" class="modal-shell small-modal" aria-hidden="true">
+  <div class="modal-card action-card">
+    <div class="modal-header"><div><span class="eyebrow">إجراء على الملف</span><h2 id="actionTitle">إضافة إجراء</h2></div><button class="icon-btn modal-close" data-close="actionModal">✕</button></div>
+    <div id="actionBody" class="action-body"></div>
+    <div class="action-footer"><button class="btn btn-ghost modal-close" data-close="actionModal">إلغاء</button><button class="btn btn-primary" id="actionConfirm">حفظ</button></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
 <script src="app.js"></script>
 </body>
 </html>

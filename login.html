@@ -1,69 +1,30 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>تسجيل الدخول | إدارة شئون وأموال القاصرين</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="login-page">
-    <section class="login-visual" aria-label="هوية النظام">
-      <div class="login-brand">
-        <div class="brand-mark" aria-label="موضع الشعار الرسمي"></div>
-        <div class="brand-text">
-          <strong>مملكة البحرين — وزارة العدل والشئون الإسلامية والأوقاف</strong>
-          <span>إدارة شئون وأموال القاصرين</span>
-        </div>
-      </div>
-
-      <div class="login-hero">
-        <h1>نظام إدارة شئون وأموال القاصرين</h1>
-        <p>بوابة الموظفين الداخلية لإدارة الملفات، التركات، أموال المحجور عليهم، الأصول العقارية، العمليات المالية، والمراجعة والاعتماد ضمن مسار رقابي موحد.</p>
-      </div>
-
-      <div class="login-meta">
-        <span>🔒 دخول آمن</span>
-        <span>⚖ إدارة مركزية للصلاحيات</span>
-        <span>🧾 سجل تدقيق للعمليات</span>
-      </div>
-    </section>
-
-    <section class="login-panel-wrap">
-      <div class="login-panel">
-        <h2>تسجيل الدخول</h2>
-        <p>اختر طريقة الدخول المناسبة لحسابك الوظيفي.</p>
-
-        <div class="ekey-box">
-          <button id="ekeyBtn" class="ekey-btn" type="button">
-            <span class="ekey-badge">e</span>
-            الدخول الموحد عبر eKey Bahrain
-          </button>
-          <div class="helper">المسار الرئيسي المقترح للدخول الموحد. في بيئة الإنتاج يتم الربط مع موفر الهوية الحكومي الفعلي.</div>
-        </div>
-
-        <div class="divider">أو دخول الموظفين الداخلي</div>
-
-        <form id="staffLogin" class="login-form">
-          <div class="form-field">
-            <label for="username">اسم المستخدم</label>
-            <input id="username" autocomplete="username" placeholder="مثال: n.almo" />
-          </div>
-          <div class="form-field">
-            <label for="password">كلمة المرور</label>
-            <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" />
-          </div>
-          <div class="login-actions">
-            <a href="#" onclick="toast('سيتم ربط استعادة كلمة المرور لاحقًا'); return false;">نسيت كلمة المرور؟</a>
-            <button class="btn btn-primary" type="submit">دخول النظام</button>
-          </div>
-        </form>
-
-        <div class="login-footer">نسخة Prototype — للاستخدام الداخلي والتصميم الفني فقط</div>
-      </div>
-    </section>
-  </main>
-  <div id="toast" class="toast"></div>
-  <script src="app.js"></script>
-</body>
-</html>
+<main class="login-page">
+  <section class="login-visual">
+    <div class="login-brand"><div class="brand-seal large"><span>مملكة<br>البحرين</span></div><div><strong>وزارة العدل والشئون الإسلامية والأوقاف</strong><small style="display:block;color:rgba(255,255,255,.6)">البوابة الداخلية للموظفين</small></div></div>
+    <div class="login-hero"><h1>نظام إدارة شئون<br>وأموال القاصرين</h1><p>مساحة عمل موحدة لإدارة ملفات التركات، أموال القاصرين، المحجور عليهم، الأصول والموافقات والرقابة التشغيلية.</p></div>
+    <div class="login-meta"><span>بيئة داخلية آمنة</span><span>RTL / Arabic First</span><span>Oracle APEX Ready</span></div>
+  </section>
+  <section class="login-panel-wrap">
+    <div class="login-panel">
+      <span class="eyebrow">الدخول إلى النظام</span><h2>مرحباً بعودتك</h2><p>استخدم المفتاح الإلكتروني أو حساب الموظف الداخلي.</p>
+      <div class="ekey-box"><button id="ekeyBtn" class="ekey-btn">الدخول الموحد عبر eKey Bahrain</button><p class="helper">محاكاة لمسار الدخول الموحد في النموذج الأولي. الربط الحقيقي يتم في مرحلة التكامل.</p></div>
+      <div class="divider">أو الدخول الداخلي</div>
+      <form id="staffLogin" class="login-form">
+        <label class="form-field"><span>اسم المستخدم</span><input id="username" type="text" placeholder="اسم المستخدم" required></label>
+        <label class="form-field"><span>كلمة المرور</span><input id="password" type="password" placeholder="••••••••" required></label>
+        <div class="login-actions"><label style="font-size:12px"><input type="checkbox"> تذكرني</label><button class="btn btn-primary" type="submit">دخول</button></div>
+      </form>
+      <div class="login-footer">نموذج أولي تجريبي — لا يحتوي على بيانات حقيقية</div>
+    </div>
+  </section>
+</main>
+<div id="toast" class="toast"></div><script src="app.js"></script>
+</body></html>

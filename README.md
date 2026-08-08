@@ -1,31 +1,54 @@
-# Minors Funds Internal Staff Portal — Prototype
+# Advanced Interactive Prototype — إدارة شئون وأموال القاصرين
 
-Static interactive prototype for the internal staff portal of إدارة شئون وأموال القاصرين.
+نسخة HTML/CSS/JavaScript متقدمة قابلة للتشغيل مباشرة في المتصفح ومصممة تمهيداً للتحويل إلى Oracle APEX Universal Theme.
 
-## Files
-- `login.html` — Login page with primary eKey-style SSO entry and staff fallback.
-- `index.html` — Internal dashboard and Oracle APEX-oriented shell.
-- `styles.css` — Shared RTL design system and responsive layout.
-- `app.js` — Sidebar, tree navigation, tabs, search, and prototype interactions.
+## الملفات
+- `login.html` — صفحة الدخول التجريبية.
+- `index.html` — البوابة الداخلية المتقدمة.
+- `styles.css` — نظام التصميم RTL والهوية المرئية.
+- `app.js` — البيانات التجريبية والتفاعلات والحفظ المحلي.
 
-## Run
-Open `login.html` directly in a modern browser. Internet access is only needed for the Google Font import; the UI falls back to system fonts if unavailable.
+## أنواع الملفات المدعومة في الـ Wizard
+1. **تركة (TR)**: بيانات المتوفى، الورثة/القاصرون، الأصول، المستندات والتكليف.
+2. **أموال قاصر (MN)**: بيانات القاصر، مصدر المال، الولي/الوصي، الأصول، المستندات.
+3. **محجور عليه (HJ)**: بيانات الشخص، قرار الحجر، القيم، الأصول والمستندات.
 
-## Oracle APEX mapping
-- Header -> Universal Theme Header Bar
-- Sidebar -> Navigation Tree
-- Breadcrumb -> Breadcrumb Region
-- KPI cards -> Cards Region
-- Main case table -> Interactive Grid placeholder
-- Tabs -> Region Display Selector / tabs pattern
-- CSS variables -> Theme Roller / custom CSS variables
+> تحويل الرشد ممثل كحالة/مسار ضمن دورة حياة ملف القاصر وليس كنوع ملف مستقل.
 
-## Branding note
-The circular scales icon is a temporary placeholder. Replace it with the officially approved Bahrain/Ministry emblem asset before production deployment.
+## التفاعلات الرئيسية
+- Wizard ديناميكي يتغير حسب نوع الملف.
+- إضافة وحذف أطراف وأصول أثناء إنشاء الملف.
+- حساب إجمالي الأصول أثناء الإدخال.
+- إنشاء ملف جديد فعلياً داخل الواجهة وحفظه في `localStorage`.
+- البحث والفلاتر حسب النوع والحالة والموظف.
+- مؤشرات Dashboard محسوبة من البيانات الحالية.
+- فتح تفاصيل أي ملف وعرض البيانات والأطراف والأصول والحسابات والطلبات والمستندات وسجل التدقيق.
+- تغيير حالة الملف أو الموظف وإضافة إجراء أو طلب جديد.
+- مركز تنبيهات جانبي.
+- اختصار `Ctrl + K` للبحث السريع.
 
+## تشغيل النموذج
+افتح `login.html` أو `index.html` مباشرة. لا يتطلب خادماً.
 
-## إضافات النسخة الحالية
-- Wizard متكامل لفتح تركة جديدة من خمس خطوات: المعلومات الرئيسية، الأطراف والورثة، الأصول والأموال، المستندات والتكليف، المراجعة والإنشاء.
-- شاشة استعراض ملف شاملة بتبويبات للبيانات الرئيسية، الأطراف، الأصول والعقارات، الحسابات والحركات، الطلبات والموافقات، المستندات، وسجل الإجراءات.
-- يمكن فتح تفاصيل الملف من زر «استعراض الملف» أو بالنقر المزدوج على صف الملف.
-- المكونات منظمة بأسلوب يسهل تحويله إلى Oracle APEX Regions / Cards / Interactive Grids / Wizard Pages.
+## ملاحظات Oracle APEX
+تم استخدام تسميات بنيوية قريبة من Universal Theme مثل:
+- `t-Header`
+- `t-TreeNav`
+- `t-Region`
+- `t-BreadcrumbRegion`
+- `a-IG`
+
+عند النقل إلى APEX يفضل تحويل:
+- جدول مركز الملفات إلى Interactive Grid / Interactive Report.
+- الـ Wizard إلى مجموعة صفحات Wizard أو Modal Pages.
+- بيانات الأطراف والأصول إلى Detail Grids / Master-Detail.
+- إجراءات الحالة والموافقة إلى Processes + Workflow tables.
+- التخزين المحلي إلى Oracle tables وPL/SQL APIs.
+
+## إعادة البيانات التجريبية
+لحذف الملفات التي أنشأتها تجريبياً وإعادة العينة الأصلية، افتح Developer Tools ثم نفذ:
+`localStorage.removeItem('mof_minors_prototype_cases_v3')`
+ثم أعد تحميل الصفحة.
+
+## الهوية الرسمية
+الرمز الموجود في الواجهة **موضع مؤقت للشعار**. يجب استبداله بملف الشعار الرسمي المعتمد قبل الاستخدام المؤسسي أو الإنتاجي.
