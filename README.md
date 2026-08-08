@@ -1,31 +1,28 @@
-# Minors Funds Internal Staff Portal — Prototype
+# نموذج إدارة شئون وأموال القاصرين — نسخة تجريبية موسعة
 
-Static interactive prototype for the internal staff portal of إدارة شئون وأموال القاصرين.
+هذه حزمة Prototype تعمل مباشرة في المتصفح باستخدام HTML/CSS/JavaScript، ومهيأة بصريًا وهيكليًا للنقل لاحقًا إلى Oracle APEX Universal Theme.
 
-## Files
-- `login.html` — Login page with primary eKey-style SSO entry and staff fallback.
-- `index.html` — Internal dashboard and Oracle APEX-oriented shell.
-- `styles.css` — Shared RTL design system and responsive layout.
-- `app.js` — Sidebar, tree navigation, tabs, search, and prototype interactions.
+## التشغيل
+افتح `login.html` ثم استخدم الدخول التجريبي، أو افتح `index.html` مباشرة.
 
-## Run
-Open `login.html` directly in a modern browser. Internet access is only needed for the Google Font import; the UI falls back to system fonts if unavailable.
+## ما أضيف في هذه النسخة
+- مثال افتراضي كامل لملف تركة: **أحمد يوسف عبدالله الهاشمي**، مع خمسة ورثة وعقارين وإيراد تجاري شهري 800 د.ب.
+- توضيح داخل ملف التركة بأن توزيع 20% لكل وارث افتراض للنموذج فقط ولا يمثل القسمة الشرعية.
+- مثال افتراضي كامل لملف محجور عليه: **خالد عبدالرحمن محمد البنعلي**، مع بيانات القائمة على شؤونه والمعاش والنفقة والفائض والرصيد.
+- تنبيهات تشغيلية جديدة: متوفون لديهم قُصّر ولم يُفتح لهم ملف، قُصّر متوفون، قضايا تخص القاصر/صاحب الملف، وإجمالي مبالغ الرشد غير المصروفة.
+- مركز تنبيهات تفاعلي يمكن فتحه من جرس التنبيهات أو زر "عرض جميع التنبيهات".
+- حسابات الأستاذ العام: البنوك، الكاش/الصندوق، حساب القُصّر العام، حساب الرشد العام، حساب المحجور عليهم العام، حساب التركات العام، حساب الإيرادات والمصروفات.
+- حسابات مساعدة مرتبطة بالملف وصاحب الحساب. مثال: لكل وارث في ملف التركة حساب مساعد مستقل.
+- ربط كل حساب مساعد بحساب الأستاذ العام التابع له.
+- كشف حركة مالية شبيه بكشف الحساب البنكي، مع: الفترة، الرصيد الافتتاحي، مدين، دائن، الرصيد الجاري، الرصيد الختامي.
+- فلترة كشف الحركة حسب الفترة والحساب المساعد.
+- فتح ملف مرتبط من شاشة الحسابات المساعدة.
 
-## Oracle APEX mapping
-- Header -> Universal Theme Header Bar
-- Sidebar -> Navigation Tree
-- Breadcrumb -> Breadcrumb Region
-- KPI cards -> Cards Region
-- Main case table -> Interactive Grid placeholder
-- Tabs -> Region Display Selector / tabs pattern
-- CSS variables -> Theme Roller / custom CSS variables
+## ملاحظات البيانات
+جميع الأسماء والأرقام الشخصية والأرصدة والأعداد في هذا النموذج بيانات افتراضية/تجريبية ولا تخص أشخاصًا حقيقيين.
 
-## Branding note
-The circular scales icon is a temporary placeholder. Replace it with the officially approved Bahrain/Ministry emblem asset before production deployment.
-
-
-## إضافات النسخة الحالية
-- Wizard موحد لفتح جميع أنواع الملفات من خمس خطوات، ويتغير تلقائيًا حسب النوع: ملف تركة، ملف قاصر مرتبط بتركة، ملف قاصر مستقل، ملف محجور عليه، وملف تحويل وتسوية حسابات الرشد.
-- شاشة «عرض تفاصيل الملف» شاملة بتبويبات للبيانات الرئيسية، الأطراف، الأصول والعقارات، الحسابات والحركات، الطلبات والموافقات، المستندات، وسجل الإجراءات.
-- يمكن فتح تفاصيل الملف من زر «عرض تفاصيل الملف» أو بالنقر المزدوج على صف الملف.
-- المكونات منظمة بأسلوب يسهل تحويله إلى Oracle APEX Regions / Cards / Interactive Grids / Wizard Pages.
+## الملفات
+- `login.html` — تسجيل الدخول
+- `index.html` — النظام الداخلي ولوحة المتابعة
+- `styles.css` — التصميم وRTL والمكونات
+- `app.js` — التفاعلات والبيانات التجريبية والأستاذ العام وكشوف الحساب

@@ -274,3 +274,71 @@ tr:hover td { background:#fffafb; }
 @media(max-width:520px){.asset-choice,.check-grid,.review-grid,.case-summary{grid-template-columns:1fr}.modal-shell{padding:0}.modal-card{width:100vw;max-height:100vh;border-radius:0}.wizard-footer{flex-direction:column;gap:8px}.footer-actions{justify-content:space-between}}
 
 .field-help{display:block;margin-top:6px;font-size:11px;color:var(--muted);line-height:1.6}.case-toolbar{display:flex;gap:8px;flex-wrap:wrap}.case-toolbar select.search{min-width:210px}.case-toolbar input.search{min-width:240px}
+
+
+/* Enhanced alerts and accounting prototype */
+.region-subtitle{display:block;margin-top:4px;font-size:11px;color:var(--muted);line-height:1.5}
+.activity-btn{width:100%;border:0;background:transparent;text-align:right;font-family:inherit;cursor:pointer;color:inherit}
+.activity-btn:hover{background:#fff9fa;border-radius:10px}
+.alert-danger .activity-icon{background:#fdecef;color:#a6192e}
+.alert-dark .activity-icon{background:#f0f1f3;color:#343941}
+.alert-warning .activity-icon{background:#fff4de;color:#9a650b}
+.alert-money .activity-icon{background:#eef7f1;color:#26724a;font-size:10px;font-weight:800}
+.ledger-preview .region-header{padding-top:10px;padding-bottom:10px}
+.ledger-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.ledger-kpi{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fafafb;position:relative;overflow:hidden}
+.ledger-kpi::before{content:'';position:absolute;right:0;top:0;bottom:0;width:4px;background:var(--bh-maroon)}
+.ledger-kpi.adulthood::before{background:var(--gold)}
+.ledger-kpi span{display:block;font-size:12px;color:var(--muted);font-weight:700}
+.ledger-kpi strong{display:block;margin:7px 0 2px;font-size:18px}
+.ledger-kpi small{color:#8a9099}
+.ledger-explain{margin-top:12px;border:1px dashed #d8dbe0;border-radius:11px;padding:13px;background:#fff;display:flex;gap:8px;align-items:flex-start}
+.ledger-explain strong{white-space:nowrap;color:var(--bh-maroon)}
+.ledger-explain span{font-size:12px;color:var(--muted);line-height:1.7}
+.alerts-card{width:min(1120px,96vw)}
+.alert-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.alert-summary{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fafafb}
+.alert-summary span{display:block;font-size:11px;color:var(--muted);margin-bottom:7px}
+.alert-summary strong{font-size:19px}
+.alert-summary.danger{border-top:3px solid var(--danger)}
+.alert-summary.dark{border-top:3px solid #4b515a}
+.alert-summary.warning{border-top:3px solid var(--warning)}
+.alert-summary.money{border-top:3px solid var(--success)}
+.prototype-note{margin-top:14px;padding:12px 14px;border-radius:10px;background:#f4f6f8;border:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.7}
+.warning-note{background:#fff8e9;border-color:#efd7a6;color:#6d541e}
+.ledger-card{width:min(1320px,98vw)}
+.ledger-info-row{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:12px;padding:12px;background:#fafafb;border:1px solid var(--line);border-radius:11px}
+.ledger-info-row>div:first-child{display:grid;gap:3px}
+.ledger-info-row span{font-size:12px;color:var(--muted)}
+.legend{display:flex;gap:7px;align-items:center;white-space:nowrap;font-size:12px}
+.legend-dot{width:9px;height:9px;border-radius:50%;display:inline-block}.legend-dot.debit{background:#b55260}.legend-dot.credit{background:#2f7d53}
+.ledger-filterbar,.statement-controls{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin-bottom:14px}
+.ledger-filterbar .form-field,.statement-controls .form-field{min-width:180px}
+.grow{flex:1;min-width:260px!important}
+.link-btn{border:0;background:transparent;color:var(--bh-maroon);font-weight:800;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.finance-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:14px}
+.finance-summary-card{border:1px solid var(--line);background:#fafafb;border-radius:11px;padding:12px}
+.finance-summary-card span{display:block;font-size:11px;color:var(--muted);line-height:1.5}
+.finance-summary-card strong{display:block;margin-top:6px;font-size:16px}
+.detail-section-heading{display:flex;justify-content:space-between;align-items:flex-end;margin:16px 0 8px}
+.detail-section-heading h4{margin:0;color:var(--bh-maroon)}
+.detail-section-heading p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+.bank-statement{border:1px solid #dfe2e6;border-radius:14px;overflow:hidden;background:#fff}
+.statement-head{display:flex;justify-content:space-between;gap:20px;padding:20px;background:linear-gradient(180deg,#fff,#fbfbfc);border-bottom:1px solid var(--line)}
+.statement-head h3{margin:4px 0 2px}.statement-head p{margin:0;color:var(--muted);font-size:12px}
+.statement-account-box{min-width:280px;border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff}
+.statement-account-box span{display:block;font-size:11px;color:var(--muted);margin-bottom:5px}
+.statement-account-box strong{font-size:12px}
+.statement-summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-bottom:1px solid var(--line);background:#fafafb}
+.statement-summary>div{padding:12px 14px;border-left:1px solid var(--line)}
+.statement-summary>div:last-child{border-left:0}
+.statement-summary span{display:block;font-size:10px;color:var(--muted);margin-bottom:4px}
+.statement-summary strong{font-size:13px}
+.statement-table{min-width:900px}
+.statement-table th{background:#f6f7f9}
+.statement-table .opening-row td{background:#fffaf0;font-weight:700}
+.debit-cell{color:#9d283a;font-weight:700}
+.credit-cell{color:#276c49;font-weight:700}
+.statement-foot{padding:12px 15px;background:#fafafb;border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.7}
+@media(max-width:1100px){.ledger-kpis,.alert-summary-grid,.finance-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.statement-summary{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.ledger-kpis,.alert-summary-grid,.finance-summary-grid,.statement-summary{grid-template-columns:1fr}.ledger-explain,.statement-head{flex-direction:column}.statement-account-box{min-width:0;width:100%}.ledger-info-row{align-items:flex-start;flex-direction:column}}
