@@ -85,3 +85,10 @@ Wizard من 6 مراحل:
 - `portal.html`: البوابة الداخلية.
 - `styles.css`: التصميم وResponsive RTL/LTR.
 - `app.js`: البيانات التجريبية، الترجمة، والتنقل والتفاعلات.
+
+## Mobile navigation & localized numerals fix
+- Mobile sidebar now sits above its backdrop so menu items remain tappable.
+- Mobile sidebar uses independent touch scrolling (`overflow-y:auto`, momentum scrolling, `touch-action:pan-y`) and the page behind it is locked while open.
+- Arabic mode explicitly uses Arabic-Indic digits (٠١٢٣٤٥٦٧٨٩) for formatted numbers and dates.
+- A DOM number-localization layer also converts dynamically rendered dashboard, table, statement, notification, property, lease and ledger values after filters/actions/modals are opened.
+- English mode switches all displayed digits back to 0-9 and LTR.
