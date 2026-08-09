@@ -1,29 +1,87 @@
-# Minors Affairs & Funds — Bilingual Interactive Prototype
+# نظام إدارة شئون وأموال القاصرين — Interactive Prototype
 
-Files:
-- `index.html` — login screen and the project entry point.
-- `portal.html` — internal staff portal.
-- `login.html` — backward-compatible redirect to `index.html`.
-- `styles.css` — responsive design system for desktop/tablet/mobile.
-- `app.js` — bilingual UI, navigation, file details, wizard, alerts, general ledger and account statements.
+نسخة تجريبية ثنائية اللغة (العربية / English) للبوابة الداخلية، مبنية بـ HTML5 / CSS3 / JavaScript، ومهيأة من حيث الهيكل لنقل المكونات لاحقاً إلى Oracle APEX Universal Theme.
 
-## Login
-Open `index.html` in a browser. For this prototype, pressing **Enter System / الدخول للنظام** always opens `portal.html`; credentials are not validated. The eKey prototype button also opens the portal.
+## التشغيل
+1. افتح `index.html`.
+2. اختر العربية أو English.
+3. اضغط «الدخول للنظام / Enter System» أو زر eKey التجريبي.
+4. تنتقل الصفحة إلى `portal.html` وتحافظ على اللغة واتجاه RTL/LTR.
 
-## Language
-Choose Arabic or English on the login screen. The selection is saved in `localStorage` (`mf_lang`) and applied to the portal automatically. The portal also includes a language switch in the header. Arabic uses RTL and English uses LTR.
+## الوحدات الرئيسية
+- لوحة التحكم.
+- جميع أنواع الملفات.
+- تنبيهات العمل.
+- التركات والقاصرين والمحجور عليهم وتسويات الرشد.
+- إدارة واستثمار العقارات — أعيد بناؤها بالكامل في هذه النسخة.
+- حسابات الأستاذ العام والحسابات المساعدة وكشوف الحركة.
+- المراجعة والاعتماد.
+- التقارير.
+- المستخدمون والصلاحيات والإعدادات (Prototype placeholders).
 
-## Included prototype modules
-- Dashboard
-- All file types: Estate, Minor linked to estate, Independent minor, Interdicted person, Maturity settlement
-- Full file details with parties, assets, finance, requests, documents and audit tabs
-- Work alerts
-- General ledger and subsidiary accounts
-- Party-level and account-level current balances
-- Balance Details / Account Statement with debit, credit and running balance
-- Responsive mobile card layouts
-- New file wizard
-- Review & approval
-- Reports
+## وحدة إدارة واستثمار العقارات
+تغطي الوحدة الجديدة:
 
-All names and identification numbers are fictional prototype data.
+### الملكية والعقار
+- عقارات التركات/الملفات.
+- عقارات الإدارة العامة.
+- ملكية مشتركة بنسب بين عدة ملفات والإدارة.
+- بيانات الصك/الوثيقة والمخطط والقطعة والرفع المساحي.
+- نوع العقار والعنوان وGPS والحالة والمرفقات.
+
+### الوحدات
+- كود ورقم الوحدة والدور والاستخدام والمساحة.
+- شاغرة / مؤجرة / صيانة / حجز إداري.
+- عدادات الكهرباء والماء.
+
+### العقود
+- بيانات المستأجر والضامن.
+- رقم العقد ودورة الدفع والبداية والنهاية والإيجار والتأمين والخدمات.
+- عرض العقد، تجديده تجريبياً، وإنهاؤه مبكراً مع تحويل الوحدة إلى شاغرة.
+
+### الفواتير والتحصيل
+- فواتير دورية وذمم مدينة.
+- سداد كامل أو جزئي مع سند قبض تجريبي.
+- طرق دفع: نقدي، تحويل بنكي، شيك، دفع إلكتروني.
+- حساب مساعد تلقائي لكل مستأجر في بيانات النموذج.
+- كشف حساب مستأجر يعرض المدين والدائن والرصيد الجاري.
+
+### توزيع الإيرادات
+- سجل توزيع معتمد تجريبي.
+- عرض الإيراد الإجمالي والمصاريف وصافي التوزيع.
+- التوزيع على حسابات الورثة/المستفيدين.
+- تمييز حصص القُصّر المعلقة.
+- الوصول إلى «تفاصيل الرصيد» للحساب المساعد للمستفيد.
+
+### Dashboard & Alerts
+- إجمالي العقارات والوحدات ونسبة الإشغال.
+- المستحق / المحصل / المتأخر / الموزع / المعلق.
+- عقود منتهية دون إخلاء أو تجديد.
+- تنبيهات 30 / 60 / 90 يوماً لانتهاء العقود.
+- تصنيف المتأخرات 30 / 60 / 90+ يوماً.
+
+### البحث والاستعراض
+- بحث متقدم حسب العقار، الملف، الصك، المستأجر، النوع والحالة والملكية.
+- بطاقة العقار الكاملة.
+- بطاقة الوحدة.
+- تفاصيل العقد.
+- شجرة: ملف/مالك ← عقار ← وحدة ← العقد الحالي.
+
+### معالج تسجيل العقار
+Wizard من 6 مراحل:
+1. الملكية.
+2. الوثيقة/الصك.
+3. بيانات العقار.
+4. الوحدات.
+5. المرفقات.
+6. المراجعة والإنشاء.
+
+## بيانات تجريبية
+جميع الأسماء والأرقام والبيانات المالية داخل النموذج افتراضية لأغراض اختبار الـPrototype فقط.
+
+## الملفات
+- `index.html`: شاشة الدخول الرئيسية.
+- `login.html`: Redirect إلى `index.html` للتوافق مع الروابط القديمة.
+- `portal.html`: البوابة الداخلية.
+- `styles.css`: التصميم وResponsive RTL/LTR.
+- `app.js`: البيانات التجريبية، الترجمة، والتنقل والتفاعلات.
