@@ -1,0 +1,197 @@
+{
+  "passed": 38,
+  "total": 38,
+  "errors": [],
+  "checks": [
+    {
+      "name": "Dashboard renders six module entries",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: files",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: inbox",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: alerts",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: assets",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: properties",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: ledger",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: reports",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: users",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: settings",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Page renders: dashboard",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "English switches layout to LTR",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "English interface title renders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "English uses Latin digits",
+      "passed": true,
+      "detail": "7"
+    },
+    {
+      "name": "Arabic switches layout to RTL",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Arabic uses Arabic-Indic digits",
+      "passed": true,
+      "detail": "٧"
+    },
+    {
+      "name": "Relationship-aware file search accepts full query",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "File search returns estate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Full file details drawer opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Five estate heirs show balance details",
+      "passed": true,
+      "detail": "5"
+    },
+    {
+      "name": "Bank-style statement opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Statement includes running balance",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Line-level journal entry has multiple lines",
+      "passed": true,
+      "detail": "6"
+    },
+    {
+      "name": "Duplicate file check finds existing estate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "New reference passes duplicate check",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Wizard final review renders all sections",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Wizard creates draft and opens details",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Asset dictionary contains all 16 common fields",
+      "passed": true,
+      "detail": "16"
+    },
+    {
+      "name": "Asset creation form is available after approval and reply",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Central asset is created and its profile opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Property collection action exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Partial/full collection saves",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Report output renders",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Report reruns with date filters",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Alert details include trigger rule",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile navigation opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile navigation is vertically scrollable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Mobile navigation items are clickable",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

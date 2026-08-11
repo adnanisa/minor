@@ -1,2 +1,84 @@
 <!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Login</title><script>location.replace('index.html');</script></head><body></body></html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#7f1426" />
+  <meta name="color-scheme" content="light" />
+  <title>تسجيل الدخول | نظام شئون وأموال القاصرين</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-body">
+  <main class="login-shell">
+    <section class="login-brand-panel" aria-labelledby="systemTitle">
+      <div class="gov-brand">
+        <div class="emblem" aria-hidden="true">⚖</div>
+        <div>
+          <strong data-i18n="kingdom">مملكة البحرين</strong>
+          <span data-i18n="ministry">وزارة العدل والشئون الإسلامية والأوقاف</span>
+        </div>
+      </div>
+
+      <div class="login-intro">
+        <span class="eyebrow" data-i18n="internalPortal">البوابة الداخلية للموظفين</span>
+        <h1 id="systemTitle" data-i18n="systemName">نظام إدارة شئون وأموال القاصرين</h1>
+        <p data-i18n="loginIntro">منصة موحدة لإدارة الملفات والأطراف والأصول والحسابات والتنبيهات ومسارات العمل والرقابة المالية.</p>
+      </div>
+
+      <div class="feature-list" aria-label="System highlights">
+        <div><span>✓</span><b data-i18n="feature1">مركز ملفات موحد وبحث عبر علاقات الأشخاص</b></div>
+        <div><span>✓</span><b data-i18n="feature2">سجل مركزي للأصول وحسابات أستاذ عام مترابطة</b></div>
+        <div><span>✓</span><b data-i18n="feature3">صندوق عمل موحد وتنبيهات ذات دورة حياة واضحة</b></div>
+      </div>
+      <small class="prototype-tag" data-i18n="prototypeOnly">نموذج تجريبي للاستخدام الفني الداخلي فقط</small>
+    </section>
+
+    <section class="login-form-panel">
+      <div class="login-card">
+        <div class="login-topline">
+          <div>
+            <h2 data-i18n="signIn">تسجيل الدخول</h2>
+            <p data-i18n="signInHint">اختر اللغة ثم طريقة الدخول المناسبة.</p>
+          </div>
+          <div class="language-picker" role="group" aria-label="Language selection">
+            <button class="lang-btn" data-lang="ar" type="button">العربية</button>
+            <button class="lang-btn" data-lang="en" type="button">English</button>
+          </div>
+        </div>
+
+        <button id="ekeyLogin" class="ekey-btn" type="button">
+          <span class="ekey-logo" aria-hidden="true">e</span>
+          <span>
+            <strong data-i18n="ekeyLogin">الدخول الموحد عبر eKey Bahrain</strong>
+            <small data-i18n="ekeyHint">المسار الرئيسي للدخول الحكومي الموحد</small>
+          </span>
+          <span class="arrow" aria-hidden="true">›</span>
+        </button>
+
+        <div class="or-divider"><span data-i18n="orStaff">أو الدخول بحساب الموظف</span></div>
+
+        <form id="loginForm" novalidate>
+          <label class="field">
+            <span data-i18n="username">اسم المستخدم</span>
+            <input id="username" name="username" autocomplete="username" data-i18n-placeholder="usernamePlaceholder" placeholder="مثال: n.almo" value="nawaf.demo" required />
+          </label>
+          <label class="field">
+            <span data-i18n="password">كلمة المرور</span>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" autocomplete="current-password" value="Prototype123" required />
+              <button id="togglePassword" class="inline-icon" type="button" aria-label="Show password">◉</button>
+            </div>
+          </label>
+          <div class="login-row">
+            <label class="remember"><input type="checkbox" checked /> <span data-i18n="rememberMe">تذكرني على هذا الجهاز</span></label>
+            <button id="forgotPassword" class="text-btn" type="button" data-i18n="forgotPassword">نسيت كلمة المرور؟</button>
+          </div>
+          <button class="btn btn-primary primary-login" type="submit" data-i18n="enterSystem">الدخول للنظام</button>
+        </form>
+        <div id="loginMessage" class="form-message" role="status" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

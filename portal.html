@@ -4,76 +4,99 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#7f1426" />
-  <title>لوحة التحكم | إدارة شئون وأموال القاصرين</title>
+  <meta name="color-scheme" content="light" />
+  <title>الرئيسية | نظام شئون وأموال القاصرين</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="portal-body">
-  <div class="app-shell">
-    <header class="topbar">
+  <div class="app-shell t-PageBody">
+    <header class="topbar t-Header">
       <div class="topbar-start">
-        <button id="navToggle" class="icon-button" type="button" aria-label="Menu">☰</button>
+        <button id="navToggle" class="icon-button" type="button" aria-label="Menu" aria-controls="sidebar" aria-expanded="false">☰</button>
         <div class="portal-brand">
-          <div class="mini-emblem">⚖</div>
-          <div><strong data-i18n="shortSystemName">شئون وأموال القاصرين</strong><span data-i18n="ministryShort">وزارة العدل</span></div>
+          <div class="mini-emblem" aria-hidden="true">⚖</div>
+          <div>
+            <strong data-i18n="shortSystemName">شئون وأموال القاصرين</strong>
+            <span data-i18n="ministryShort">وزارة العدل</span>
+          </div>
         </div>
       </div>
+
+      <div class="header-search-wrap">
+        <button id="globalSearchButton" class="header-search" type="button">
+          <span>⌕</span>
+          <span data-i18n="globalSearch">بحث موحد بالملف أو الشخص أو الأصل...</span>
+          <kbd>Ctrl K</kbd>
+        </button>
+      </div>
+
       <div class="topbar-actions">
         <div class="portal-lang-switch" role="group" aria-label="Language">
           <button type="button" class="lang-btn" data-lang="ar">ع</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
         </div>
-        <button id="notificationsButton" class="icon-button notification-button" type="button" aria-label="Notifications">🔔<span id="notificationCount" class="notification-count">6</span></button>
+        <button id="notificationsButton" class="icon-button notification-button" type="button" aria-label="Notifications">
+          🔔<span id="notificationCount" class="notification-count">٠</span>
+        </button>
         <button id="userButton" class="user-menu-button" type="button">
-          <span class="avatar">ن</span><span class="user-copy"><strong data-i18n="userName">نواف محمد</strong><small data-i18n="systemAdmin">مسؤول النظام</small></span><span>⌄</span>
+          <span class="avatar">ن</span>
+          <span class="user-copy"><strong data-i18n="userName">نواف محمد</strong><small data-i18n="systemAdmin">مسؤول النظام</small></span>
+          <span aria-hidden="true">⌄</span>
         </button>
       </div>
     </header>
 
-    <aside id="sidebar" class="sidebar">
+    <aside id="sidebar" class="sidebar t-TreeNav" aria-label="Main navigation">
       <nav class="nav-list">
         <div class="nav-caption" data-i18n="main">الرئيسية</div>
-        <button class="nav-link active" data-page="dashboard"><span>▦</span><b data-i18n="dashboard">لوحة التحكم</b></button>
-        <button class="nav-link" data-page="files"><span>🗂</span><b data-i18n="allFiles">جميع الملفات</b><span class="nav-badge">386</span></button>
-        <button class="nav-link" data-page="alerts"><span>🔔</span><b data-i18n="workAlerts">تنبيهات العمل</b><span class="nav-badge danger">6</span></button>
+        <button class="nav-link active" data-page="dashboard" type="button"><span>▦</span><b data-i18n="dashboard">الرئيسية</b></button>
+        <button class="nav-link" data-page="files" type="button"><span>🗂</span><b data-i18n="fileCenter">مركز الملفات</b><span class="nav-badge" id="filesNavCount">٠</span></button>
+        <button class="nav-link" data-page="inbox" type="button"><span>✓</span><b data-i18n="workInbox">صندوق العمل الموحد</b><span class="nav-badge gold" id="inboxNavCount">٠</span></button>
+        <button class="nav-link" data-page="alerts" type="button"><span>🔔</span><b data-i18n="workAlerts">تنبيهات العمل</b><span class="nav-badge danger" id="alertsNavCount">٠</span></button>
 
-        <div class="nav-caption" data-i18n="operations">العمليات</div>
-        <button class="nav-link" data-page="estates"><span>⚖</span><b data-i18n="estateFiles">ملفات التركات</b></button>
-        <button class="nav-link" data-page="minors"><span>👤</span><b data-i18n="minorFiles">ملفات القاصرين</b></button>
-        <button class="nav-link" data-page="interdicted"><span>🛡</span><b data-i18n="interdictedFiles">ملفات المحجور عليهم</b></button>
-        <button class="nav-link" data-page="assets"><span>🏢</span><b data-i18n="assetsProperties">إدارة واستثمار العقارات</b></button>
-        <button class="nav-link" data-page="ledger"><span>💳</span><b data-i18n="generalLedger">حسابات الأستاذ العام</b></button>
-        <button class="nav-link" data-page="approvals"><span>✓</span><b data-i18n="reviewApproval">المراجعة والاعتماد</b></button>
-        <button class="nav-link" data-page="reports"><span>📊</span><b data-i18n="reports">التقارير</b></button>
+        <div class="nav-caption" data-i18n="operations">الوحدات</div>
+        <button class="nav-link" data-page="assets" type="button"><span>◆</span><b data-i18n="assetCenter">مركز الأصول</b></button>
+        <button class="nav-link" data-page="properties" type="button"><span>🏢</span><b data-i18n="propertyManagement">إدارة واستثمار العقارات</b></button>
+        <button class="nav-link" data-page="ledger" type="button"><span>💳</span><b data-i18n="generalLedger">حسابات الأستاذ العام</b></button>
+        <button class="nav-link" data-page="reports" type="button"><span>📊</span><b data-i18n="reportsMonitoring">التقارير والمتابعة</b></button>
 
         <div class="nav-caption" data-i18n="administration">الإدارة</div>
-        <button class="nav-link" data-page="users"><span>👥</span><b data-i18n="usersPermissions">المستخدمون والصلاحيات</b></button>
-        <button class="nav-link" data-page="settings"><span>⚙</span><b data-i18n="settings">الإعدادات</b></button>
+        <button class="nav-link" data-page="users" type="button"><span>👥</span><b data-i18n="usersPermissions">المستخدمون والصلاحيات</b></button>
+        <button class="nav-link" data-page="settings" type="button"><span>⚙</span><b data-i18n="settingsIntegrations">الإعدادات والتكاملات</b></button>
         <button id="logoutBtn" class="nav-link logout-link" type="button"><span>↪</span><b data-i18n="logout">تسجيل الخروج</b></button>
       </nav>
     </aside>
 
     <main class="main-area">
-      <div class="breadcrumb"><span data-i18n="main">الرئيسية</span><span>›</span><strong id="breadcrumbTitle" data-i18n="dashboard">لوحة التحكم</strong></div>
-      <div id="pageContent" class="page-content"></div>
+      <div class="breadcrumb t-BreadcrumbRegion">
+        <span data-i18n="main">الرئيسية</span><span aria-hidden="true">›</span><strong id="breadcrumbTitle" data-i18n="dashboard">الرئيسية</strong>
+      </div>
+      <div id="pageContent" class="page-content" aria-live="polite"></div>
     </main>
   </div>
 
-  <div id="sidebarBackdrop" class="sidebar-backdrop"></div>
+  <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
 
-  <div id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-head"><div><strong id="drawerTitle"></strong><small id="drawerSubtitle"></small></div><button id="drawerClose" class="icon-button" type="button">×</button></div>
+  <aside id="drawer" class="drawer" aria-hidden="true" aria-modal="true" role="dialog">
+    <div class="drawer-head">
+      <div><strong id="drawerTitle"></strong><small id="drawerSubtitle"></small></div>
+      <button id="drawerClose" class="icon-button" type="button" aria-label="Close">×</button>
+    </div>
     <div id="drawerBody" class="drawer-body"></div>
-  </div>
-  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+  </aside>
+  <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
 
-  <div id="modal" class="modal" aria-hidden="true">
+  <div id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-dialog">
-      <div class="modal-head"><div><strong id="modalTitle"></strong><small id="modalSubtitle"></small></div><button id="modalClose" class="icon-button" type="button">×</button></div>
+      <div class="modal-head">
+        <div><strong id="modalTitle"></strong><small id="modalSubtitle"></small></div>
+        <button id="modalClose" class="icon-button" type="button" aria-label="Close">×</button>
+      </div>
       <div id="modalBody" class="modal-body"></div>
     </div>
   </div>
 
-  <div id="toast" class="toast" role="status"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
 </body>
 </html>
